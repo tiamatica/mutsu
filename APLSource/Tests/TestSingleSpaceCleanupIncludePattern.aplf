@@ -1,0 +1,12 @@
+ TestSingleSpaceCleanupIncludePattern;res;suite;exp;cfg
+
+ BasicHelpers.GLOBAL←1
+
+ cfg←##.Core.NewConfiguration
+ cfg.TestSpaces←BasicHelpers
+ cfg.CleanupIncludePattern←'Cleanup$'
+ res←##.Core.RunTests cfg
+
+ Assert 0=BasicHelpers.⎕NC'GLOBAL'
+
+⍝

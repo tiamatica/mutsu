@@ -1,0 +1,1 @@
+ Assert←{⍺←''⋄~⍵: ⎕SIGNAL ⊂('EN' 98)('ENX' 1)('Message' ⍺)}

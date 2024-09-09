@@ -1,0 +1,14 @@
+ TestReportJUnit;res;xml;mls;expectedXml;expectedMls
+
+ res←##.Core.RunTests BasicHelpers
+ xml←##.Core.ReportJUnit res
+
+ expectedXml←⊃⎕NGET'./testdata/testresult.xml'
+
+ mls expectedMls←⎕XML⍠'Whitespace' 'Preserve'¨xml expectedXml
+
+ mls[;4]←{⍵⌿⍨~⍵[;1]∊'hostname' 'time' 'timestamp'}¨mls[;4]
+ expectedMls[;4]←{⍵⌿⍨~⍵[;1]∊'hostname' 'time' 'timestamp'}¨expectedMls[;4]
+ Assert mls≡expectedMls
+
+ ⍝

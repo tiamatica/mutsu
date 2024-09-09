@@ -1,0 +1,24 @@
+ BuildAndPublish;⎕TRAP;⎕IO;⎕ML;root;version;template;ns;json;packagename;parms
+ ⎕IO←⎕ML←1
+ {}⎕EX⊃⎕SI
+ ⎕TRAP←0 'E' '⎕←↑⎕DM,⎕XSI,¨''['',¨(⍕¨⎕LC),¨'']'' ⋄ ⎕OFF 1'
+ version←2 ⎕NQ '.' 'GetEnvironment' 'GITVERSION'
+ :If 0∊⍴version
+    ⎕←'GITVERSION not specified. Aborting'
+    ⎕OFF 1
+ :EndIf
+ ⎕←'Build version: ',version
+ root←⊃1 ⎕NPARTS ''
+ ⎕←'Working directory: ',root
+ ⎕WSID←root,'Mutsu'  
+ ⎕←'Establish Tatin in ⎕SE'
+ ⎕←⎕SE.Tatin.Version
+ ⎕←'Build package'
+ 3 ⎕MKDIR './build'
+ parms←⎕SE.Tatin.CreateBuildParms root
+ parms.targetPath←'./build'
+ parms.version←version
+ packagename←⎕SE.Tatin.BuildPackage parms
+ ⎕←'Publish package ',packagename,' to [tiamatica]'
+ ⎕←⎕SE.Tatin.PublishPackage packagename '[tiamatica]'
+ ⎕OFF 0

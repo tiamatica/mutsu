@@ -1,0 +1,22 @@
+ TestSingleSpaceSetupCleanupIncludePatternsWithTests;res;suite;exp;cfg
+
+ BasicHelpers.⎕EX'GLOBAL'
+
+ cfg←##.Core.NewConfiguration
+ cfg.TestSpaces←BasicHelpers
+ cfg.TestIncludePattern←'Test$'
+ cfg.SetupIncludePattern←'Setup$'
+ cfg.CleanupIncludePattern←'Cleanup$'
+ res←##.Core.RunTests cfg
+
+ Assert 0=BasicHelpers.⎕NC'GLOBAL'
+ Assert 1=≢res.Testsuites
+ suite←⊃res.Testsuites
+ Assert suite.Name≡'#.Mutsu.Tests.BasicHelpers'
+ exp←0 2⍴⊂''
+ exp⍪←'expectGlobal1Test' 0
+ exp⍪←'expectGlobal2Test' 0
+ exp⍪←'expectGlobal3Test' 3
+ exp⍪←'expectGlobal4Test' 0
+ Assert exp≡↑suite.Testcases.(Name ResultCode)
+⍝

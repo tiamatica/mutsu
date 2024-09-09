@@ -1,0 +1,13 @@
+ TestSkip;cfg;res;exp;suite
+
+ cfg←##.Core.NewConfiguration
+ cfg.TestSpaces←BasicHelpers
+ cfg.TestIncludePattern←'^testSkip'
+ res←##.Core.RunTests cfg
+
+ Assert 1=≢res.Testsuites
+ suite←⊃res.Testsuites
+ Assert suite.Name≡'#.Mutsu.Tests.BasicHelpers'
+ exp←0 3⍴⊂''
+ exp⍪←'testSkip'##.Core.API.TESTRESULT.SKIP''
+ Assert exp≡↑suite.Testcases.(Name ResultCode Type)

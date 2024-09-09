@@ -1,0 +1,18 @@
+ r←ReportText testresult;testsuite;issues;cmnt
+⍝ Generate test report as text
+ r←0⍴⊂''
+ r,←⊂testresult.Name,' on ',FormatTS testresult.Timestamp
+ r,←⊂'Total suites:   ',⍕≢testresult.Testsuites
+ r,←⊂'Total tests:    ',⍕testresult.Tests
+ r,←⊂'Total errors:   ',⍕testresult.Errors
+ r,←⊂'Total failures: ',⍕testresult.Failures
+ r,←⊂'Total skipped:  ',⍕testresult.Skipped
+ :For testsuite :In testresult.Testsuites
+     :If ∨/issues←~testsuite.Testcases.ResultCode∊API.TESTRESULT.PASS
+         r,←⊂''
+         r,←⊂'Testsuite: ',testsuite.Name
+         cmnt←'⍝ error' '⍝ failure' '⍝ skipped' ''[API.TESTRESULT.(ERROR FAIL SKIP)⍳testsuite.Testcases.ResultCode]
+         r,←↓⍕issues⌿⍉↑testsuite.((⊂Name,'.'),¨Testcases.Name)cmnt
+     :EndIf
+ :EndFor
+⍝

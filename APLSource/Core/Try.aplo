@@ -1,0 +1,19 @@
+ {la}(err Try rop)rarg;expected;msg;attr_res;attr_val
+ expected←{3=10|⎕DR ⍵:⎕EM ⍵ ⋄ ⍵}err
+ msg←'Expected exception [',expected,']'
+ (attr_res attr_val)←2↑↑⍬⍴⎕AT'rop'
+ ⍎(0=⎕NC'la')/'la←⊢'
+ :Trap 0
+     :If (0=attr_res)∧(2=|attr_val)
+         la rop rarg
+     :ElseIf 0=attr_res
+         rop rarg
+     :Else
+         {}la rop rarg
+     :EndIf
+ :Else
+     →(∨/err⍷⎕DMX.(EN,EM,' ',Message))/0
+     msg,←' got [',⎕DMX.EM,']'
+     ⎕SIGNAL⊂('EN' 98)('ENX' 1)('Message'msg)
+ :EndTrap
+ ⎕SIGNAL⊂('EN' 98)('ENX' 1)('Message'msg)

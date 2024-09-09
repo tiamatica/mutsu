@@ -1,0 +1,14 @@
+* text=auto
+
+*.apl linguist-language=apl
+*.apla linguist-language=apl
+*.aplc linguist-language=apl
+*.aplf linguist-language=apl
+*.apli linguist-language=apl
+*.apln linguist-language=apl
+*.aplo linguist-language=apl
+*.dws linguist-language=apl
+*.dyapp linguist-language=apl
+
+apl-package.json linguist-language=json5
+cider.config linguist-language=json5

@@ -1,0 +1,3 @@
+ r←ReportJUnit testresult
+⍝ Generate test report in JUnit xml format
+ r←##.ReportJUnit testresult

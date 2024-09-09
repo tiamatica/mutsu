@@ -1,0 +1,5 @@
+ GetObjectInfo←{
+     info←(5179⌶)⍵
+     (4⊃info)←(⊃1 ⎕NPARTS''){(((≢⍺)×⊃⍺⍷⍵)↓⍵)}4⊃info
+     info
+ }

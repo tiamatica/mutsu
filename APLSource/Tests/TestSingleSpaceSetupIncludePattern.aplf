@@ -1,0 +1,12 @@
+ TestSingleSpaceSetupIncludePattern;res;suite;exp;cfg
+
+ BasicHelpers.⎕EX'GLOBAL'
+
+ cfg←##.Core.NewConfiguration
+ cfg.TestSpaces←BasicHelpers
+ cfg.SetupIncludePattern←'Setup$'
+ res←##.Core.RunTests cfg
+
+ Assert 2=BasicHelpers.⎕NC'GLOBAL'
+
+⍝

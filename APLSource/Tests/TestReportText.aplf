@@ -1,0 +1,10 @@
+ TestReportText;res;txt;expectedTxt
+
+ res←##.Core.RunTests BasicHelpers
+ txt←##.Core.ReportText res
+
+ expectedTxt←⊃⎕NGET'./testdata/testresult.txt' 1
+
+ Assert (1↓txt)≡1↓expectedTxt ⍝ ignore header with timestamp
+
+ ⍝

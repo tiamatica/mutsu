@@ -1,0 +1,50 @@
+ {res}←RunTests arg;res;testsuite;testnamespaces;testnamespace;xml;cfg
+⍝ Run tests and return result.
+⍝ arg is either a configuration space (NewConfiguration)
+⍝ or a vector of namespaces to scan for tests.
+⍝ If arg is empty, scan calling space for tests.
+⍝ Return a result space.
+
+ :If 0∊⍴arg                            ⍝ if empty...
+     cfg←NewConfiguration
+     cfg.TestSpaces,←⊃⎕RSI             ⍝ ...scan calling space
+ :ElseIf 1<≢arg                        ⍝ if more than one
+ :OrIf (⍕arg)≢'[Mutsu configuration]'  ⍝ or not a config space
+     cfg←NewConfiguration
+     cfg.TestSpaces,←arg               ⍝ ...assume refs to scan
+ :Else
+     cfg←arg
+ :EndIf
+
+ res←NewResultSet
+ testnamespaces←⊃,/{
+     0∊⍴subspaces←⍵.⎕NL ¯9.1:⍵
+     subspaces/⍨←((⊂⍕⍵),¨'.',¨subspaces)≡¨⍕¨⍵.⍎¨subspaces
+     0∊⍴subspaces:⍵
+     ⍵,⊃,/∇¨⍵.⍎¨subspaces
+ }¨cfg.TestSpaces
+
+ :For testnamespace :In testnamespaces
+     testsuite←cfg RunTestsuite testnamespace
+     :If ~0∊⍴testsuite.Testcases
+         res.Testsuites,←testsuite
+     :EndIf
+ :EndFor
+ res.TimeElapsed←86400×-/1 ⎕DT ⎕TS res.Timestamp
+ :If ~0∊⍴res.Testsuites
+     res.(Errors Failures Skipped Tests)←+⌿↑res.Testsuites.(Errors Failures Skipped Tests)
+ :EndIf
+
+ :Select cfg.ReportType
+ :Case API.REPORTTYPE.SESSION
+     ⎕←↑ReportText res
+ :Case API.REPORTTYPE.TXT
+     xml←ReportText res
+     3 ⎕MKDIR cfg.ReportPath
+     (⊂xml)⎕NPUT(cfg.ReportPath,cfg.ReportName,'.txt')1
+ :Case API.REPORTTYPE.JUNIT
+     xml←ReportJUnit res
+     3 ⎕MKDIR cfg.ReportPath
+     (⊂xml)⎕NPUT(cfg.ReportPath,cfg.ReportName,'.xml')1
+ :EndSelect
+⍝

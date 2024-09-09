@@ -1,0 +1,3 @@
+ r←ReportText testresult
+⍝ Generate test report as text
+ r←##.ReportText testresult

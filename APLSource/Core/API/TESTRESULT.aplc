@@ -1,0 +1,6 @@
+:Class TESTRESULT
+    :Field Public Shared ReadOnly PASS←0
+    :Field Public Shared ReadOnly FAIL←1
+    :Field Public Shared ReadOnly SKIP←2
+    :Field Public Shared ReadOnly ERROR←3
+:EndClass

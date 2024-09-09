@@ -1,0 +1,14 @@
+ r←ReportJUnit testresult;mls;testsuite;timestamp;attr
+⍝ Generate test report in JUnit xml format
+ mls←1 4⍴0 '?xml version="1.0" encoding="UTF-8"?' '' ''
+ timestamp←FormatTS testresult.Timestamp
+ attr←0 2⍴⊂''
+ attr⍪←'timestamp'timestamp
+ attr⍪←'time'testresult.TimeElapsed
+ attr⍪←'errors' 'failures' 'skipped' 'tests',⍪testresult.(Errors Failures Skipped Tests)
+ mls⍪←0 'testsuites' '' ''
+ :For testsuite :In testresult.Testsuites
+     mls⍪←1 SerializeTestsuite testsuite
+ :EndFor
+ r←⎕XML⍠'Whitespace' 'Preserve'⊢mls
+⍝

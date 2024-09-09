@@ -1,0 +1,25 @@
+ TestSingleSpaceTestIncludePattern;res;suite;exp;cfg
+
+ cfg←##.Core.NewConfiguration
+ cfg.TestSpaces←BasicHelpers
+ cfg.TestIncludePattern←'^testAssert'
+ res←##.Core.RunTests cfg
+
+ Assert 1=≢res.Testsuites
+
+ suite←⊃res.Testsuites
+ Assert 3=≢suite.Testcases
+ Assert∧/⊣/'testAssert'⍷↑suite.Testcases.Name
+
+ cfg←##.Core.NewConfiguration
+ cfg.TestSpaces←BasicHelpers
+ cfg.TestIncludePattern←'^testSkip'
+ res←##.Core.RunTests cfg
+
+ Assert 1=≢res.Testsuites
+
+ suite←⊃res.Testsuites
+ Assert 1=≢suite.Testcases
+ Assert'testSkip'≡⊃suite.Testcases.Name
+
+⍝

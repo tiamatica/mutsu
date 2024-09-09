@@ -1,0 +1,15 @@
+ TestMultipleSpacesNoConfig;res;suite;exp
+
+ res←##.Core.RunTests BasicHelpers OtherTests
+
+ Assert 2=≢res.Testsuites
+
+ suite←1⊃res.Testsuites
+ Assert suite.Name≡'#.Mutsu.Tests.BasicHelpers'
+ Assert 10=≢suite.Testcases
+
+ suite←2⊃res.Testsuites
+ Assert suite.Name≡'#.Mutsu.Tests.OtherTests'
+ Assert 2=≢suite.Testcases
+
+⍝

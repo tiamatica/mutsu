@@ -1,0 +1,3 @@
+suiteCleanup
+⍝ do something
+⎕EX'GLOBAL'

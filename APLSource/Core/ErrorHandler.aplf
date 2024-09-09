@@ -1,0 +1,5 @@
+ ErrorHandler
+ ∆ST←1↓⎕XSI,¨'[',¨,∘']'¨⍕¨⎕LC
+ ∆ST/⍨←~⊃¨'\.Mutsu\.(Core\.)?RunTest'⎕S 0¨∆ST
+ ∆DMX←⎕DMX
+ ⎕SIGNAL⊂('EN' 98)('ENX' API.TESTRESULT.ERROR)

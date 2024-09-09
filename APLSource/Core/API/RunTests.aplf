@@ -1,0 +1,7 @@
+ {res}←RunTests arg
+⍝ Run tests and return result.
+⍝ arg is either a configuration space (NewConfiguration)
+⍝ or a vector of namespaces to scan for tests.
+⍝ If arg is empty, scan calling space for tests.
+⍝ Return a result space.
+ res←##.RunTests arg

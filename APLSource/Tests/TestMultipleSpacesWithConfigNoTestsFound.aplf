@@ -1,0 +1,10 @@
+ TestMultipleSpacesWithConfigNoTestsFound;res;suite;exp;cfg
+
+ cfg←##.Core.NewConfiguration
+ cfg.TestSpaces←BasicHelpers OtherTests
+ cfg.TestIncludePattern←'_test$'
+ res←##.Core.RunTests cfg
+
+ Assert 0=≢res.Testsuites
+
+⍝

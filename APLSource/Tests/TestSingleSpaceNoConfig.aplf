@@ -1,0 +1,10 @@
+ TestSingleSpaceNoConfig;res;suite;exp
+
+ res←##.Core.RunTests BasicHelpers
+
+ Assert 1=≢res.Testsuites
+
+ suite←⊃res.Testsuites
+ Assert suite.Name≡'#.Mutsu.Tests.BasicHelpers'
+
+⍝

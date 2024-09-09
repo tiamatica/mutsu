@@ -1,0 +1,10 @@
+ r←NewTestcase name
+ r←(⊃⎕RSI).⎕NS''
+ r.Details←''
+ r.File←''
+ r.Line←0
+ r.Message←''
+ r.Name←name
+ r.ResultCode←API.TESTRESULT.PASS
+ r.TimeElapsed←0
+ r.Type←''

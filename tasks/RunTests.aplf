@@ -1,0 +1,11 @@
+ RunTests
+
+ ⎕SE.Link.Import'Mutsu' './APLSource'
+ :Trap 0
+     #.Mutsu.Tests.TestMutsu
+ :Else
+     ⎕←↑⎕DM
+     ⎕OFF 1
+ :EndTrap
+ ⎕OFF 0
+

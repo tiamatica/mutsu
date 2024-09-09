@@ -1,0 +1,12 @@
+ dev;v;cfg
+ {}⎕SE.UCMD'Tatin.version'
+ :Trap 911
+     {}⎕SE.UCMD'CIDER.version'
+ :Else
+     {}⎕SE.Tatin.InstallPackages'aplteam-cider' '[myucmds]'
+     {}⎕SE.UCMD'CIDER.version'
+ :EndTrap
+ cfg←⎕SE.Cider.CreateOpenParms ''
+ cfg.folder←'./'
+ cfg.batch←1
+ {}⎕SE.Cider.OpenProject cfg

@@ -1,0 +1,32 @@
+ res←cfg RunTestsuite testspace;res;allfns;testfns;testfn;ai;testcase;setupfns;cleanupfns;lasttest
+⍝ Run tests using configuraition in cfg
+⍝ Return a result space.
+
+ res←NewTestsuite⍕testspace
+ allfns←testspace.⎕NL-3
+ testfns←cfg.TestIncludePattern ⎕S'%'⊢allfns
+ setupfns←cfg.SetupIncludePattern ⎕S'%'⊢allfns
+ cleanupfns←cfg.CleanupIncludePattern ⎕S'%'⊢allfns
+
+ →(0∊⍴testfns)/0
+
+ (⍕testspace)⎕NS'Assert' 'Skip' 'Try'
+ testspace.⍎¨setupfns
+
+ :For testfn :In testfns
+     lasttest←testfn≡⊃¯1↑testfns
+     ai←⎕AI
+     testcase←cfg RunTest testspace testfn
+     testcase.TimeElapsed←(3⊃⎕AI-ai)÷1000
+     :If testcase.ResultCode≠API.TESTRESULT.PASS
+     :AndIf ~lasttest
+         testspace.⍎¨cleanupfns,setupfns
+     :EndIf
+     res.Testcases,←testcase
+ :EndFor
+
+ testspace.⍎¨cleanupfns
+ res.TimeElapsed←86400×-/1 ⎕DT ⎕TS res.Timestamp
+ res.Tests←≢res.Testcases
+ res.(Errors Failures Skipped)←+⌿res.Testcases.ResultCode∘.=API.TESTRESULT.(ERROR FAIL SKIP)
+⍝

@@ -1,0 +1,3 @@
+suiteSetup
+⍝ do something
+GLOBAL←1

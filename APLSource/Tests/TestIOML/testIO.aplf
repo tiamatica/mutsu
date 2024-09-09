@@ -1,0 +1,4 @@
+testIO
+⍝ check that we are in ⎕IO = 0
+Assert 0 1 2≡⍳3
+Assert 1='abc'⍳'b'

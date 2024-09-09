@@ -1,0 +1,14 @@
+Test run on 2024-03-01T12:16:23
+Total suites:   1
+Total tests:    10
+Total errors:   1
+Total failures: 4
+Total skipped:  1
+
+Testsuite: #.Mutsu.Tests.BasicHelpers
+ #.Mutsu.Tests.BasicHelpers.testAssertError          ⍝ error   
+ #.Mutsu.Tests.BasicHelpers.testAssertFail           ⍝ failure 
+ #.Mutsu.Tests.BasicHelpers.testSkip                 ⍝ skipped 
+ #.Mutsu.Tests.BasicHelpers.testTryErrorMessageFail  ⍝ failure 
+ #.Mutsu.Tests.BasicHelpers.testTryErrorNumberFail   ⍝ failure 
+ #.Mutsu.Tests.BasicHelpers.testTryNoException       ⍝ failure 

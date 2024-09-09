@@ -1,0 +1,4 @@
+ testML
+⍝ check that we are in ⎕ML = 3
+ Assert 2≡↑2 3 4
+ Assert'abcd'≡∊'ab' 'cd'

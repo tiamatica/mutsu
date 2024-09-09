@@ -1,0 +1,4 @@
+ expectGlobal1Test
+
+ Assert 2=⎕NC'GLOBAL'
+ Assert GLOBAL=1

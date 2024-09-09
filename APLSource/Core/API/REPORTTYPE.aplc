@@ -1,0 +1,5 @@
+:Class REPORTTYPE
+    :Field Public Shared ReadOnly SESSION←0
+    :Field Public Shared ReadOnly TXT←1
+    :Field Public Shared ReadOnly JUNIT←2
+:EndClass

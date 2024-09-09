@@ -1,0 +1,38 @@
+ mls←depth SerializeTestsuite testsuite;attr;testcase;timestamp
+
+ timestamp←FormatTS testsuite.Timestamp
+ attr←0 2⍴⊂''
+ attr⍪←'name'testsuite.Name
+ attr⍪←(~0∊⍴testsuite.File)⌿⍉⍪'file'testsuite.File
+ attr⍪←'hostname'(⊃⎕SH'hostname')
+ attr⍪←'time' testsuite.TimeElapsed
+ attr⍪←'timestamp'timestamp
+ attr⍪←'errors' 'failures' 'skipped' 'tests',⍪testsuite.(Errors Failures Skipped Tests)
+ mls←1 4⍴depth'testsuite' ''attr
+
+ :For testcase :In testsuite.Testcases
+     attr←0 2⍴⊂''
+     attr⍪←'classname'testsuite.Name
+     attr⍪←'name'testcase.Name
+     :If ~0∊⍴testcase.File
+         attr⍪←'file'testcase.File
+         attr⍪←'line'testcase.Line
+     :EndIf
+     attr⍪←'time' testcase.TimeElapsed
+     mls⍪←(depth+1)'testcase' ''attr
+     :Select testcase.ResultCode
+     :Case API.TESTRESULT.FAIL
+         attr←'message' 'type',⍪testcase.(Message Type)
+         mls⍪←(depth+2)'failure' ''attr
+     :Case API.TESTRESULT.SKIP
+         attr←1 2⍴'message'testcase.Message
+         mls⍪←(depth+2)'skipped' ''attr
+     :Case API.TESTRESULT.ERROR
+         attr←'message' 'type',⍪testcase.(Message Type)
+         mls⍪←(depth+2)'error' ''attr
+     :EndSelect
+     :If ~0∊⍴testcase.Details
+         mls⍪←(depth+3)('![CDATA[',testcase.Details,']]')'' ''
+     :EndIf
+ :EndFor
+⍝

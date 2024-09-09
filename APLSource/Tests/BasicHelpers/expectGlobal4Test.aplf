@@ -1,0 +1,4 @@
+ expectGlobal4Test
+⍝ run after error in previous expectGlobal3Test
+ Assert 2=⎕NC'GLOBAL'
+ Assert GLOBAL=1

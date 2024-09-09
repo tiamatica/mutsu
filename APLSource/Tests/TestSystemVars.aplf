@@ -1,0 +1,11 @@
+TestSystemVars;res;suite;exp
+
+ res←##.Core.RunTests TestIOML
+
+ Assert 1=≢res.Testsuites
+ suite←⊃res.Testsuites
+ Assert suite.Name≡'#.Mutsu.Tests.TestIOML'
+ exp←0 3⍴⊂''
+ exp⍪←'testIO' ##.Core.API.TESTRESULT.PASS ''
+ exp⍪←'testML'  ##.Core.API.TESTRESULT.PASS ''
+ Assert exp≡↑suite.Testcases.(Name ResultCode Type)

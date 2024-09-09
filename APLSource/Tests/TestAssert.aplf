@@ -1,0 +1,15 @@
+ TestAssert;cfg;res;exp;suite
+
+ cfg←##.Core.NewConfiguration
+ cfg.TestSpaces←BasicHelpers
+ cfg.TestIncludePattern←'^testAssert'
+ res←##.Core.RunTests cfg
+
+ Assert 1=≢res.Testsuites
+ suite←⊃res.Testsuites
+ Assert suite.Name≡'#.Mutsu.Tests.BasicHelpers'
+ exp←0 3⍴⊂''
+ exp⍪←'testAssertError' ##.Core.API.TESTRESULT.ERROR 'DOMAIN ERROR'
+ exp⍪←'testAssertFail' ##.Core.API.TESTRESULT.FAIL 'AFFIRM ERROR'
+ exp⍪←'testAssertPass' ##.Core.API.TESTRESULT.PASS ''
+ Assert exp≡↑suite.Testcases.(Name ResultCode Type)
