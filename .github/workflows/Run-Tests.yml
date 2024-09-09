@@ -1,0 +1,35 @@
+name: Run Tests
+run-name: Run tests ${{ github.ref_name}}.${{ github.run_id}}-${{ github.run_number}}.${{ github.run_attempt}}
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  Run-Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v3.0.0
+        with:
+          versionSpec: '5.x'
+      
+      - name: Determine Version
+        uses: gittools/actions/gitversion/execute@v3.0.0
+        with:
+          useConfigFile: true
+      
+      - name: Run tests using Docker
+        run: >
+          chmod -R 777 ${{ github.workspace }};
+          docker run
+          -v ${{ github.workspace }}:/app
+          -w /app -e DYALOG_SERIAL=${{ secrets.DYALOG_SERIAL }}
+          -e LOAD=/app/tasks/RunTests.aplf
+          -e GITVERSION="${{ env.GitVersion_LegacySemVer }}"
+          registry.hub.docker.com/dyalog/dyalog:19.0;
+          exit $?
