@@ -24,7 +24,7 @@
  TestSystemVars
 
 ⍝ Test reporting
- TestReportJUnit
+⍝ TestReportJUnit ⍝ ignore until issue in dyloag docker fixed
  TestReportText
 
 ⍝
