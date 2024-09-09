@@ -2,7 +2,7 @@
 
  ⎕SE.Link.Import'Mutsu' './APLSource'
  :Trap 0
-     #.Mutsu.Tests.TestMutsu
+     #.Mutsu.Tests.Run
  :Else
      ⎕←↑⎕DM
      ⎕OFF 1
