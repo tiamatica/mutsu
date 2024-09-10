@@ -1,6 +1,6 @@
  RunTests
 
- ⎕SE.Link.Import'Mutsu' './APLSource'
+ ⎕SE.Link.Create'Mutsu' './APLSource'
  :Trap 0
      #.Mutsu.Tests.Run
  :Else
