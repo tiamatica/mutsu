@@ -1,4 +1,4 @@
- TestReportJUnit;res;xml;mls;expectedXml;expectedMls
+ TestReportJUnit;res;xml;mls;expectedXml;expectedMls;removeKnownDiffs
 
  res←##.Core.RunTests BasicHelpers
  xml←##.Core.ReportJUnit res
@@ -7,8 +7,12 @@
 
  mls expectedMls←⎕XML⍠'Whitespace' 'Preserve'¨xml expectedXml
 
- mls[;4]←{⍵⌿⍨~⍵[;1]∊'hostname' 'time' 'timestamp'}¨mls[;4]
- expectedMls[;4]←{⍵⌿⍨~⍵[;1]∊'hostname' 'time' 'timestamp'}¨expectedMls[;4]
- Assert mls≡expectedMls
+ removeKnownDiffs←{
+     m←⍵
+     m[;4]←{⍵⌿⍨~⍵[;1]∊'hostname' 'time' 'timestamp'}¨m[;4]
+     m[;3]←{(∧\~1⌽'#.RunTests['⍷⍵)/⍵}¨m[;3]
+     m
+ }
+ Assert mls≡⍥removeKnownDiffs expectedMls
 
  ⍝
