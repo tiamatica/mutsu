@@ -22,7 +22,14 @@ jobs:
         uses: gittools/actions/gitversion/execute@v3.0.0
         with:
           useConfigFile: true
-      
+
+      - name: Login to Azure CR
+        uses: azure/docker-login@v2
+        with:
+          login-server: ${{ vars.CONTAINER_REGISTRY }}
+          username: ${{ secrets.AZURE_ACR_USR }}
+          password: ${{ secrets.AZURE_ACR_PWD }}
+
       - name: Run tests using Docker
         run: >
           chmod -R 777 ${{ github.workspace }};
@@ -31,5 +38,5 @@ jobs:
           -w /app -e DYALOG_SERIAL=${{ secrets.DYALOG_SERIAL }}
           -e LOAD=/app/tasks/RunTests.aplf
           -e GITVERSION="${{ env.GitVersion_LegacySemVer }}"
-          registry.hub.docker.com/dyalog/dyalog:19.0;
+          ${{ vars.CONTAINER_REGISTRY }}/dyalog:v190-dotnet;
           exit $?
