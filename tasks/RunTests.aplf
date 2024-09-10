@@ -1,5 +1,5 @@
  RunTests
- 600⌶1
+ ⎕SE.Link.(⎕FX(⊂' :If 2=DEBUG←1')@7⊢⎕NR'Create')
  ⎕SE.Link.Create'Mutsu' './APLSource'
  :Trap 0
      #.Mutsu.Tests.Run
