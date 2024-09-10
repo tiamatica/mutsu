@@ -33,6 +33,7 @@ jobs:
       - name: Run tests using Docker
         run: >
           chmod -R 777 ${{ github.workspace }};
+          ls -al ${{ github.workspace }}/APLSource/Core/;
           docker run
           -v ${{ github.workspace }}:/app
           -w /app -e DYALOG_SERIAL=${{ secrets.DYALOG_SERIAL }}
