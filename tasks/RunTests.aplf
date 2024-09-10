@@ -1,4 +1,6 @@
  RunTests
+ ⎕←2 4 ⎕AT 'RunTests'
+ ⎕←3 5 ⎕NINFO '/app/APLSource/Core/Assert.aplf'
  ⎕SE.Link.(⎕FX(⊂' :If 2=DEBUG←1')@7⊢⎕NR'Create')
  ⎕SE.Link.Create'Mutsu' './APLSource'
  :Trap 0
