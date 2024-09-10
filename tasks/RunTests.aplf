@@ -3,6 +3,7 @@
  ⎕IO←1
  ⎕←⎕AT 'RunTests'
  ⎕←⎕SE.Dyalog.Utils.display (¯1+⍳16)⎕NINFO '/app/APLSource/Core/Assert.aplf'
+ ⎕←⎕SH'ls -al APLSource/Core'
  ⎕SE.Link.(⎕FX(⊂' :If 2=DEBUG←1')@7⊢⎕NR'Create')
  ⎕SE.Link.Create'Mutsu' './APLSource'
  :Trap 0
