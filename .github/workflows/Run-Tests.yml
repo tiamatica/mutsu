@@ -34,7 +34,6 @@ jobs:
         run: >
           chmod -R 777 ${{ github.workspace }};
           id;
-          chown -R 1000 ${{ github.workspace }};
           ls -al ${{ github.workspace }}/APLSource/Core/;
           docker run
           -v ${{ github.workspace }}:/app
