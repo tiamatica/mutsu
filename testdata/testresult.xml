@@ -2,8 +2,7 @@
 Assert[] Assert←{⍺←'' ⋄ ~⍵:⎕SIGNAL⊂('EN' 98)('ENX' 1)('Message'⍺)}
                         ∧
 #.Mutsu.Tests.BasicHelpers.testAssertError[2]
-#.Mutsu.Tests.TestReportJUnit[2]
-#.Mutsu.Tests.Run[26]]]></error></testcase><testcase classname="#.Mutsu.Tests.BasicHelpers" name="testAssertFail" file="APLSource/Tests/BasicHelpers/testAssertFail.aplf" line="0" time="0"><failure message="testAssertFail[2] Assert 0" type="AFFIRM ERROR"><![CDATA[AFFIRM ERROR
+#.Mutsu.Tests.TestReportJUnit[2]]]></error></testcase><testcase classname="#.Mutsu.Tests.BasicHelpers" name="testAssertFail" file="APLSource/Tests/BasicHelpers/testAssertFail.aplf" line="0" time="0"><failure message="testAssertFail[2] Assert 0" type="AFFIRM ERROR"><![CDATA[AFFIRM ERROR
 testAssertFail[2] Assert 0
                   ∧]]></failure></testcase><testcase classname="#.Mutsu.Tests.BasicHelpers" name="testAssertPass" file="APLSource/Tests/BasicHelpers/testAssertPass.aplf" line="0" time="0"></testcase><testcase classname="#.Mutsu.Tests.BasicHelpers" name="testSkip" file="APLSource/Tests/BasicHelpers/testSkip.aplf" line="0" time="0"><skipped message="this test should be skipped"></skipped></testcase><testcase classname="#.Mutsu.Tests.BasicHelpers" name="testTryErrorMessageFail" file="APLSource/Tests/BasicHelpers/testTryErrorMessageFail.aplf" line="0" time="0"><failure message="Expected exception [VALUE] got [DOMAIN ERROR]" type="AFFIRM ERROR"><![CDATA[AFFIRM ERROR
 testTryErrorMessageFail[2] 'text'('VALUE'Try+)123

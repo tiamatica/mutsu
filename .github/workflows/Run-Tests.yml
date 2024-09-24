@@ -31,6 +31,8 @@ jobs:
           password: ${{ secrets.AZURE_ACR_PWD }}
 
       - name: Run tests using Docker
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: >
           chmod -R 777 ${{ github.workspace }};
           docker run
@@ -38,5 +40,8 @@ jobs:
           -w /app -e DYALOG_SERIAL=${{ secrets.DYALOG_SERIAL }}
           -e LOAD=/app/tasks/RunTests.aplf
           -e GITVERSION="${{ env.GitVersion_LegacySemVer }}"
+          -e GITHUB_TOKEN="${{ env.GITHUB_TOKEN }}"
+          -e GITHUB_REPOSITORY="${{ env.GITHUB_REPOSITORY }}"
+          -e GITHUB_SHA="${{ env.GITHUB_SHA }}"
           ${{ vars.CONTAINER_REGISTRY }}/dyalog:v190-dotnet;
           exit $?
