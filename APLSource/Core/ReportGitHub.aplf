@@ -24,10 +24,10 @@
      d,lf,'</details>',lf
  }
  fmtTime←{,'F7.3,<s>'⎕FMT ⍵}
- fmtUTCTS←{↑⍣(0=≡⍵)⊢'%ISO%"Z"'(1200⌶)⍵}
+ fmtUTCTS←{⊃⍣(0=≡⍵)⊢'%ISO%"Z"'(1200⌶)⍵}
  fmtTestCase←{
      0∊⍴⍵:''
-     tag←(⍵.ResultCode>0)⊃':white_check_mark: ' ':x: '
+     tag←(⎕IO+⍵.ResultCode>0)⊃':white_check_mark: ' ':x: '
      tag,((code ⍵.Name),' - ',fmtTime ⍵.TimeElapsed),codeblock ⍵
  }
 
