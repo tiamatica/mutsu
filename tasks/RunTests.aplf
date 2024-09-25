@@ -1,7 +1,6 @@
  RunTests;cfg
 
  cfg←⎕SE.Cider.CreateOpenParms ⍬
- cfg.batch
  cfg.batch←1
  cfg.folder←'.'
  ⎕SE.Cider.OpenProject cfg
