@@ -1,0 +1,77 @@
+ {(rc msg)}←ReportGitHub res;started_at;lf;createTable;fmtTime;fmtTestCase;errorCo;testsCo;passedCo;skippedCo;failureCo;title;summaryTbl;detail;testSuite;conclusion;p;f;s;e;summary;completed_at;code;codeblock;fmtUTCTS;token;repo;sha;clt
+⍝ Generate report of test cases to GitHub
+⍝ KD 24-08-21
+⍝ res: obj, Mutsu result namespace
+⍝ rc:  ns,  0 = ok, 1 = failed
+⍝ msg: obj, GitHub check run message.
+
+ token repo sha←2 ⎕NQ'.' 'GetEnvironment'('GITHUB_TOKEN' 'GITHUB_REPOSITORY' 'GITHUB_SHA')
+ :If 0∊≢¨token repo sha
+     rc msg←1 'Missing required GitHub details.'
+     :Return
+ :EndIf
+
+ started_at←1 ⎕DT'Z'
+ lf←⎕UCS 10
+ createTable←{(↓⍕('| '∘,¨⍕¨⍵)),¨'|'}
+ code←{0=≢⍵:'' ⋄ '`',⍵,'`'}
+ codeblock←{
+     0=≢⍵.Details,⍵.Message:''
+     0=≢⍵.Details:' - **',⍵.Message,'**'
+     d←lf,'<details>'
+     d,←lf,'<summary>',⍵.Message,'</summary>'
+     d,←lf,lf,'```apl',lf,⍵.Details,lf,'```',lf
+     d,lf,'</details>',lf
+ }
+ fmtTime←{,'F7.3,<s>'⎕FMT ⍵}
+ fmtUTCTS←{⊃⍣(0=≡⍵)⊢'%ISO%"Z"'(1200⌶)⍵}
+ fmtTestCase←{
+     0∊⍴⍵:''
+     tag←(⎕IO+⍵.ResultCode>0)⊃':white_check_mark: ' ':x: '
+     tag,((code ⍵.Name),' - ',fmtTime ⍵.TimeElapsed),codeblock ⍵
+ }
+
+ testsCo failureCo errorCo skippedCo←⍕¨res.(Tests Failures Errors Skipped)
+ passedCo←⍕res.(Tests-+/Failures Errors Skipped)
+
+ title←testsCo,' tests; ',passedCo,' passed, ',failureCo,' failed, ',errorCo,' errors and ',skippedCo,' skipped'
+ summaryTbl←⍉⍪'Testsuite' 'Tests' 'Passed' 'Failed' 'Skipped' 'Errors' 'Time'
+ summaryTbl⍪←⊂'---'
+ detail←''
+ :For testSuite :In res.Testsuites
+     f s e←{⍵=0:'' ⋄ (⍕⍵),' :x:'}¨testSuite.(Failures Skipped Errors)
+     p←{⍵=0:'' ⋄ (⍕⍵),' :white_check_mark:'}testSuite.(Tests-+/Failures Skipped Errors)
+     summaryTbl⍪←testSuite.Name(⍕testSuite.Tests)p f s e(fmtTime testSuite.TimeElapsed)
+     detail,←(⊂'## ',testSuite.Name),fmtTestCase¨testSuite.Testcases
+ :EndFor
+ :If ∨/0<res.(Errors Skipped Failures)
+     conclusion←'failure'
+ :Else
+     conclusion←'success'
+ :EndIf
+
+ summary←createTable summaryTbl
+ completed_at←1 ⎕DT'Z'
+
+ msg←⎕NS''
+ msg.head_sha←sha
+ msg.name←'Test Report'
+ msg.status←'completed'
+ msg.conclusion←conclusion
+ msg.(started_at completed_at)←fmtUTCTS started_at completed_at
+ msg.output←⎕NS''
+ msg.output.title←title
+ msg.output.summary←∊summary,¨lf
+ msg.output.text←∊detail,¨lf
+
+ clt←⎕NEW HttpCommand
+ clt.Command←'POST'
+ clt.Auth←token
+ clt.AuthType←'Bearer'
+ clt.Headers⍪←'Accept' 'application/vnd.github+json'
+ clt.Headers⍪←'X-GitHub-Api-Version' '2022-11-28'
+ clt.URL←'https://api.github.com/repos/',repo,'/check-runs'
+ clt.Params←msg
+ res←clt.Run
+ rc msg←0 res
+ ⍝

@@ -1,4 +1,4 @@
- {res}←RunTests arg;res;testsuite;testnamespaces;testnamespace;xml;cfg
+ {res}←RunTests arg;res;testsuite;testnamespaces;testnamespace;xml;cfg;rc;msg
 ⍝ Run tests and return result.
 ⍝ arg is either a configuration space (NewConfiguration)
 ⍝ or a vector of namespaces to scan for tests.
@@ -46,5 +46,14 @@
      xml←ReportJUnit res
      3 ⎕MKDIR cfg.ReportPath
      (⊂xml)⎕NPUT(cfg.ReportPath,cfg.ReportName,'.xml')1
+ :Case API.REPORTTYPE.GITHUB
+     ⎕←'Posting to GitHub'
+     rc msg←ReportGitHub res ⍝ Try posting to GitHub
+     :If rc=0
+         ⎕←msg.HttpStatus msg.Data
+     :Else
+         ⎕←msg
+         ⎕←↑ReportText res
+     :EndIf
  :EndSelect
 ⍝

@@ -1,8 +1,12 @@
- RunTests
+ RunTests;cfg
 
- ⎕SE.Link.Create'Mutsu' './APLSource'
+ cfg←⎕SE.Cider.CreateOpenParms ⍬
+ cfg.batch←1
+ cfg.folder←'.'
+ ⎕SE.Cider.OpenProject cfg
+ 
  :Trap 0
-     #.Mutsu.Tests.Run
+     #.Mutsu.RunTests
  :Else
      ⎕←↑⎕DM
      ⎕OFF 1

@@ -38,5 +38,8 @@ jobs:
           -w /app -e DYALOG_SERIAL=${{ secrets.DYALOG_SERIAL }}
           -e LOAD=/app/tasks/RunTests.aplf
           -e GITVERSION="${{ env.GitVersion_LegacySemVer }}"
+          -e GITHUB_TOKEN="${{ github.token }}"
+          -e GITHUB_REPOSITORY="${{ github.repository }}"
+          -e GITHUB_SHA="${{ github.sha }}"
           ${{ vars.CONTAINER_REGISTRY }}/dyalog:v190-dotnet;
           exit $?
