@@ -1,4 +1,4 @@
-Test run on 2024-03-01T12:16:23
+Test run on 2024-09-27T15:35:30
 Total suites:   1
 Total tests:    10
 Total errors:   1
@@ -6,9 +6,9 @@ Total failures: 4
 Total skipped:  1
 
 Testsuite: #.Mutsu.Tests.BasicHelpers
- #.Mutsu.Tests.BasicHelpers.testAssertError          ⍝ error   
- #.Mutsu.Tests.BasicHelpers.testAssertFail           ⍝ failure 
- #.Mutsu.Tests.BasicHelpers.testSkip                 ⍝ skipped 
- #.Mutsu.Tests.BasicHelpers.testTryErrorMessageFail  ⍝ failure 
- #.Mutsu.Tests.BasicHelpers.testTryErrorNumberFail   ⍝ failure 
- #.Mutsu.Tests.BasicHelpers.testTryNoException       ⍝ failure 
+ #.Mutsu.Tests.BasicHelpers.testAssertError          ⍝ error:     DOMAIN ERROR Assert[] Assert←{⍺←'' ⋄ ~⍵:⎕SIGNAL⊂('EN' 98)('ENX' 1)('Message'⍺)} 
+ #.Mutsu.Tests.BasicHelpers.testAssertFail           ⍝ failure:   AFFIRM ERROR testAssertFail[2] Assert 0                                         
+ #.Mutsu.Tests.BasicHelpers.testSkip                 ⍝ skipped:   this test should be skipped                                                     
+ #.Mutsu.Tests.BasicHelpers.testTryErrorMessageFail  ⍝ failure:   Expected exception [VALUE] got [DOMAIN ERROR]                                   
+ #.Mutsu.Tests.BasicHelpers.testTryErrorNumberFail   ⍝ failure:   Expected exception [VALUE ERROR] got [DOMAIN ERROR]                             
+ #.Mutsu.Tests.BasicHelpers.testTryNoException       ⍝ failure:   Expected exception [VALUE]                                                      

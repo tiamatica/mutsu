@@ -1,4 +1,4 @@
- r←cfg RunTest(testspace testfn);res;⎕TRAP;dmx;∆ST;∆DMX;toString
+ r←cfg RunTest(testspace testfn);res;⎕TRAP;dmx;∆ST;∆DMX;toString;getMessage
 ⍝ Run test testfn using configuration cfg
 
  r←NewTestcase testfn
@@ -15,15 +15,15 @@
 Fail:
  dmx←⎕DMX
  toString←{1↓⊃,/(⎕UCS 10),¨⍵}
+ getMessage←{~0∊⍴⍵.Message:⍵.Message ⋄ 1↓∊' ',¨2↑⍵.DM}
  ⎕TRAP←0⍴⎕TRAP
  r.ResultCode←dmx.ENX    ⍝ API.TESTRESULT
- r.Message←dmx.Message
+ r.Message←getMessage dmx
  :If r.ResultCode=API.TESTRESULT.FAIL
      r.Type←dmx.EM
-     r.Message←r.Message{~0∊⍴⍺:⍺ ⋄ ⍵}2⊃dmx.DM
      r.Details←toString dmx.DM
  :ElseIf r.ResultCode=API.TESTRESULT.ERROR
-     r.Message←∆DMX.Message
+     r.Message←getMessage ∆DMX
      r.Details←toString ∆DMX.DM,∆ST
      r.Type←∆DMX.EM
  :EndIf
