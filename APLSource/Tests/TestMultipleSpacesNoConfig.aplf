@@ -6,7 +6,7 @@
 
  suite←1⊃res.Testsuites
  Assert suite.Name≡'#.Mutsu.Tests.BasicHelpers'
- Assert 10=≢suite.Testcases
+ Assert 12=≢suite.Testcases
 
  suite←2⊃res.Testsuites
  Assert suite.Name≡'#.Mutsu.Tests.OtherTests'
