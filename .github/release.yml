@@ -1,0 +1,14 @@
+changelog:
+  categories:
+    - title: '🐛 Bug fixes'
+      labels:
+        - 'bug'
+    - title: '🏕 Features'
+      labels:
+        - '*'
+      exclude:
+        labels:
+          - 'dependencies'
+    - title: '⍟ Dependencies'
+      labels:
+        - 'dependencies'
