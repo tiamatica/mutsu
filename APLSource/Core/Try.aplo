@@ -1,19 +1,23 @@
- {la}(err Try rop)rarg;expected;msg;attr_res;attr_val
+ {larg}(err Try rop)rarg;expected;msg;attr_res;attr_val;⎕IO
+ ⍝ err: Expected error, either as an event code or a string/substring. 0 if no error expected.
+ ⎕IO←0
  expected←{3=10|⎕DR ⍵:⎕EM ⍵ ⋄ ⍵}err
- msg←'Expected exception [',expected,']'
+ msg←(err≡0)⊃('Expected exception [',expected,']')'Expected no exception'
  (attr_res attr_val)←2↑↑⍬⍴⎕AT'rop'
- ⍎(0=⎕NC'la')/'la←⊢'
+ ⍎(0=⎕NC'larg')/'larg←⊢'
  :Trap 0
      :If (0=attr_res)∧(2=|attr_val)
-         la rop rarg
+         larg rop rarg
      :ElseIf 0=attr_res
          rop rarg
      :Else
-         {}la rop rarg
+         {}larg rop rarg
      :EndIf
  :Else
      →(∨/err⍷⎕DMX.(EN,EM,' ',Message))/0
      msg,←' got [',⎕DMX.EM,']'
      ⎕SIGNAL⊂('EN' 98)('ENX' 1)('Message'msg)
  :EndTrap
- ⎕SIGNAL⊂('EN' 98)('ENX' 1)('Message'msg)
+ :If err≢0
+    ⎕SIGNAL⊂('EN' 98)('ENX' 1)('Message'msg)
+ :EndIf

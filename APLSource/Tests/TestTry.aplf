@@ -14,5 +14,7 @@
  exp⍪←'testTryErrorNumberFail'##.Core.API.TESTRESULT.FAIL'AFFIRM ERROR'
  exp⍪←'testTryErrorNumberPass'##.Core.API.TESTRESULT.PASS''
  exp⍪←'testTryNoException'##.Core.API.TESTRESULT.FAIL'AFFIRM ERROR'
+ exp⍪←'testTryNoExpectedExcFail'##.Core.API.TESTRESULT.FAIL'AFFIRM ERROR'
+ exp⍪←'testTryNoExpectedExcPass'##.Core.API.TESTRESULT.PASS''
  exp⍪←'testTryNoResultDiv'##.Core.API.TESTRESULT.PASS''
  Assert exp≡↑suite.Testcases.(Name ResultCode Type)
