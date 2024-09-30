@@ -1,4 +1,4 @@
-Test run on 2024-09-27T15:35:30
+Test run on 2024-09-30T10:53:05
 Total suites:   1
 Total tests:    12
 Total errors:   1
@@ -6,9 +6,10 @@ Total failures: 5
 Total skipped:  1
 
 Testsuite: #.Mutsu.Tests.BasicHelpers
- #.Mutsu.Tests.BasicHelpers.testAssertError          ⍝ error:     DOMAIN ERROR Assert[] Assert←{⍺←'' ⋄ ~⍵:⎕SIGNAL⊂('EN' 98)('ENX' 1)('Message'⍺)} 
- #.Mutsu.Tests.BasicHelpers.testAssertFail           ⍝ failure:   AFFIRM ERROR testAssertFail[2] Assert 0                                         
- #.Mutsu.Tests.BasicHelpers.testSkip                 ⍝ skipped:   this test should be skipped                                                     
- #.Mutsu.Tests.BasicHelpers.testTryErrorMessageFail  ⍝ failure:   Expected exception [VALUE] got [DOMAIN ERROR]                                   
- #.Mutsu.Tests.BasicHelpers.testTryErrorNumberFail   ⍝ failure:   Expected exception [VALUE ERROR] got [DOMAIN ERROR]                             
- #.Mutsu.Tests.BasicHelpers.testTryNoException       ⍝ failure:   Expected exception [VALUE]                                                      
+ #.Mutsu.Tests.BasicHelpers.testAssertError           ⍝ error:     DOMAIN ERROR Assert[] Assert←{⍺←'' ⋄ ~⍵:⎕SIGNAL⊂('EN' 98)('ENX' 1)('Message'⍺)} 
+ #.Mutsu.Tests.BasicHelpers.testAssertFail            ⍝ failure:   AFFIRM ERROR testAssertFail[2] Assert 0                                         
+ #.Mutsu.Tests.BasicHelpers.testSkip                  ⍝ skipped:   this test should be skipped                                                     
+ #.Mutsu.Tests.BasicHelpers.testTryErrorMessageFail   ⍝ failure:   Expected exception [VALUE] got [DOMAIN ERROR]                                   
+ #.Mutsu.Tests.BasicHelpers.testTryErrorNumberFail    ⍝ failure:   Expected exception [VALUE ERROR] got [DOMAIN ERROR]                             
+ #.Mutsu.Tests.BasicHelpers.testTryNoException        ⍝ failure:   Expected exception [VALUE]                                                      
+ #.Mutsu.Tests.BasicHelpers.testTryNoExpectedExcFail  ⍝ failure:   Expected no exception got [DOMAIN ERROR]                                        
