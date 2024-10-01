@@ -9,7 +9,7 @@
 
  ⎕TRAP←(~cfg.Debug)/(98 'C' '→Fail')((0 1000)'E'((⍕⎕THIS),'.ErrorHandler'))
 
- testspace{⍺.(3.2=42 ⎕ATX ⍵):⍺⍎⍵,'⍬' ⋄ ⍺⍎⍵}testfn
+ testspace{3.2=42 ⍺.⎕ATX ⍵:⍺⍎⍵,'⍬' ⋄ ⍺⍎⍵}testfn
  :Return
 
 Fail:
