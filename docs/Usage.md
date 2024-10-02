@@ -52,10 +52,10 @@ Default: `⍬`
   
 The `TestSpaces` can be a single namespace or a vector of namespaces. To scan the entire workspaceset it to `#`.  
 
-### TestPatternCaseInsensitive
+### PatternIgnoreCase
 Default: 1
 
-Case insensitivity flag for TestIncludePattern. 
+Case insensitivity flag for the include patterns of test, cleanup and setup. 
 Set to 0 for case-sensitive match.
 
 ### TestIncludePattern  
@@ -64,14 +64,14 @@ Default: '^test|_test$'
 Possible to modify to any regex filter.
 
 ### CleanupIncludePattern  
-Default: '^[cC]leanup'  
+Default: '^cleanup'  
 
 Possible to modify to any regex filter.  
 Cleanup functions are executed always after tests are done.  
 
 ### SetupIncludePattern
 
-Default: '^[sS]etup' 
+Default: '^setup' 
 
 Possible to modify to any regex filter.  
 Setup functions are executed always before running the tests.  
