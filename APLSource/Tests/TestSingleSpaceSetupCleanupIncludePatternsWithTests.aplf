@@ -4,7 +4,7 @@
 
  cfg←##.Core.NewConfiguration
  cfg.TestSpaces←BasicHelpers
- cfg.TestPatternCaseInsensitive←0
+ cfg.PatternIgnoreCase←0
  cfg.TestIncludePattern←'Test$'
  cfg.SetupIncludePattern←'Setup$'
  cfg.CleanupIncludePattern←'Cleanup$'

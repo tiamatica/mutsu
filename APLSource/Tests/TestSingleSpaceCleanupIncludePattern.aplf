@@ -4,6 +4,7 @@
 
  cfg←##.Core.NewConfiguration
  cfg.TestSpaces←BasicHelpers
+ cfg.PatternIgnoreCase←0
  cfg.CleanupIncludePattern←'Cleanup$'
  res←##.Core.RunTests cfg
 
