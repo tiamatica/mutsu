@@ -2,6 +2,7 @@
 
  cfg←##.Core.NewConfiguration
  cfg.TestSpaces←BasicHelpers
+ cfg.TestPatternCaseInsensitive←0
  cfg.TestIncludePattern←'^testAssert'
  res←##.Core.RunTests cfg
 
@@ -13,6 +14,7 @@
 
  cfg←##.Core.NewConfiguration
  cfg.TestSpaces←BasicHelpers
+ cfg.TestPatternCaseInsensitive←0
  cfg.TestIncludePattern←'^testSkip'
  res←##.Core.RunTests cfg
 
