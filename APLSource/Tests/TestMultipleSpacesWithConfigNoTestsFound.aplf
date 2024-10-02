@@ -2,6 +2,7 @@
 
  cfg←##.Core.NewConfiguration
  cfg.TestSpaces←BasicHelpers OtherTests
+ cfg.PatternIgnoreCase←0
  cfg.TestIncludePattern←'_test$'
  res←##.Core.RunTests cfg
 

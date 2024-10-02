@@ -3,6 +3,7 @@
  Core.HttpCommand←HttpCommand ⍝ need this as Core is exported as package
  cfg←Core.NewConfiguration
  cfg.TestSpaces←Tests
+ cfg.PatternIgnoreCase←0
  cfg.TestIncludePattern←'^Test'
  cfg.ReportType←Core.API.REPORTTYPE.GITHUB
  Core.RunTests cfg
