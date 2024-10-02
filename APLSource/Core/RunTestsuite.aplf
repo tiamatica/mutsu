@@ -4,9 +4,9 @@
 
  res←NewTestsuite⍕testspace
  allfns←testspace.⎕NL-3
- testfns←cfg.TestIncludePattern ⎕S'%'⍠cfg.TestPatternCaseInsensitive⊢allfns
- setupfns←cfg.SetupIncludePattern ⎕S'%'⊢allfns
- cleanupfns←cfg.CleanupIncludePattern ⎕S'%'⊢allfns
+ testfns←cfg.TestIncludePattern ⎕S'%'⍠cfg.PatternIgnoreCase⊢allfns
+ setupfns←cfg.SetupIncludePattern ⎕S'%'⍠cfg.PatternIgnoreCase⊢allfns
+ cleanupfns←cfg.CleanupIncludePattern ⎕S'%'⍠cfg.PatternIgnoreCase⊢allfns
 
  →(0∊⍴testfns)/0
 

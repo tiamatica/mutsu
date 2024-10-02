@@ -4,10 +4,10 @@
  r.⎕DF'[Mutsu configuration]'
  r.Debug←0                                  ⍝ Debug flag, set to 1 to disable errorhandling
  r.TestSpaces←⍬                             ⍝ Vector of namespace refs to scan for test functions
- r.TestPatternCaseInsensitive←1             ⍝ RE case sensitivy flag for test pattern. 0: case sensitive
+ r.PatternIgnoreCase←1                      ⍝ RE case sensitivity flag. 0: case-sensitive
  r.TestIncludePattern←'^test|_test$'        ⍝ RE pattern to filter functions found in TestSpace
- r.CleanupIncludePattern←'^[cC]leanup'      ⍝ RE pattern to find cleanup function
- r.SetupIncludePattern←'^[sS]etup'          ⍝ RE pattern to find setup function
+ r.CleanupIncludePattern←'^cleanup'         ⍝ RE pattern to find cleanup function
+ r.SetupIncludePattern←'^setup'             ⍝ RE pattern to find setup function
  r.ReportPath←''                            ⍝ Set path for test-report
  r.ReportType←API.REPORTTYPE.SESSION        ⍝ Type of report.
  r.ReportName←'testreport'                  ⍝ Testreport name (xml files supported)
