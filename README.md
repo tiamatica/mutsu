@@ -10,7 +10,7 @@ Add the Mutsu package to your project:
 ## Getting Started  
 For more info how to use Mutsu, see [Usage](./docs/Usage.md).
     
-Create your test functions which names start with `Test`.  
+Create your test functions with names that either start with `Test` or end with `_Test`(case-insensitive).  
 Run Mutsu's RunTests   
 `Mutsu.RunTests #`  
 

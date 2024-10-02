@@ -52,8 +52,14 @@ Default: `⍬`
   
 The `TestSpaces` can be a single namespace or a vector of namespaces. To scan the entire workspaceset it to `#`.  
 
+### TestPatternCaseInsensitive
+Default: 1
+
+Case insensitivity flag for TestIncludePattern. 
+Set to 0 for case-sensitive match.
+
 ### TestIncludePattern  
-Default: '^[tT]est' 
+Default: '^test|_test$' 
 
 Possible to modify to any regex filter.
 
