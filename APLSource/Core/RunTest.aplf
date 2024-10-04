@@ -9,7 +9,7 @@
 
  ⎕TRAP←(~cfg.Debug)/(98 'C' '→Fail')((0 1000)'E'((⍕⎕THIS),'.ErrorHandler'))
  :If testspace{10 ⍺.⎕ATX ⍵}testfn
-    :If 0=testspace⍎testfn
+    :If cfg.SuccessCode≠testspace⍎testfn
         r.ResultCode←API.TESTRESULT.FAIL
     :EndIf
  :EndIf
