@@ -1,0 +1,15 @@
+ TestWithReturnCode;res;suite;exp;cfg
+
+ cfg←##.Core.NewConfiguration
+ cfg.TestSpaces←ReturnCode
+ res←##.Core.RunTests cfg
+
+ Assert 1=≢res.Testsuites
+
+ suite←⊃res.Testsuites
+ Assert suite.Name≡'#.Mutsu.Tests.ReturnCode'
+
+ Assert suite.Tests≡2
+ Assert suite.Failures≡1
+
+⍝
