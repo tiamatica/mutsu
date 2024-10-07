@@ -8,12 +8,13 @@
  ∆ST←0⍴⊂''
 
  ⎕TRAP←(~cfg.Debug)/(98 'C' '→Fail')((0 1000)'E'((⍕⎕THIS),'.ErrorHandler'))
- :If testspace{10 ⍺.⎕ATX ⍵}testfn
-    :If cfg.SuccessCode≠testspace⍎testfn
+ retval valens←10 11 testspace.⎕ATX testfn
+ expr←valens{⍺=0:⍵ ⋄ ⍺=1:⍵,'⍬' ⋄ '⍬',⍵,'⍬'}testfn
+ :If |retval
+    :If cfg.SuccessCode≢testspace⍎expr
         r.ResultCode←API.TESTRESULT.FAIL
     :EndIf
  :EndIf
- testspace{3.2=42 ⍺.⎕ATX ⍵:⍺⍎⍵,'⍬' ⋄ ⍺⍎⍵}testfn
  :Return
 
 Fail:
