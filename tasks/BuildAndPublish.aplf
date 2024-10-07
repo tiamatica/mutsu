@@ -10,15 +10,15 @@
  ⎕←'Build version: ',version
  root←⊃1 ⎕NPARTS ''
  ⎕←'Working directory: ',root
- ⍝⎕WSID←root,'Mutsu'  
- ⍝⎕←'Establish Tatin in ⎕SE'
- ⍝⎕←⎕SE.Tatin.Version
- ⍝⎕←'Build package'
- ⍝3 ⎕MKDIR './build'
- ⍝parms←⎕SE.Tatin.CreateBuildParms root
- ⍝parms.targetPath←'./build'
- ⍝parms.version←version
- ⍝packagename←⎕SE.Tatin.BuildPackage parms
- ⍝⎕←'Publish package ',packagename,' to [tiamatica]'
+ ⎕WSID←root,'Mutsu'  
+ ⎕←'Establish Tatin in ⎕SE'
+ ⎕←⎕SE.Tatin.Version
+ ⎕←'Build package'
+ 3 ⎕MKDIR './build'
+ parms←⎕SE.Tatin.CreateBuildParms root
+ parms.targetPath←'./build'
+ parms.version←version
+ packagename←⎕SE.Tatin.BuildPackage parms
+ ⎕←'Publish package ',packagename,' to [tiamatica]'
  ⍝⎕←⎕SE.Tatin.PublishPackage packagename '[tiamatica]'
  ⎕OFF 0

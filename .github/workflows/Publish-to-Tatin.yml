@@ -31,7 +31,7 @@ jobs:
           username: ${{ secrets.AZURE_ACR_USR }}
           password: ${{ secrets.AZURE_ACR_PWD }}
 
-      - name: Run tests using Docker
+      - name: Run BuildAndPublish using Docker
         run: >
           chmod -R 777 ${{ github.workspace }};
           docker run
