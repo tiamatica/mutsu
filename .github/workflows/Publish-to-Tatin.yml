@@ -1,0 +1,46 @@
+name: Publish release to Tatin
+run-name: Publish release ${{ github.ref_name }} to Tatin server
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+
+jobs: 
+  Publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v3.0.0
+        with:
+          versionSpec: '5.x'
+      
+      - name: Determine Version
+        uses: gittools/actions/gitversion/execute@v3.0.0
+        with:
+          useConfigFile: true
+
+      - name: Login to Azure CR
+        uses: azure/docker-login@v2
+        with:
+          login-server: ${{ vars.CONTAINER_REGISTRY }}
+          username: ${{ secrets.AZURE_ACR_USR }}
+          password: ${{ secrets.AZURE_ACR_PWD }}
+
+      - name: Run tests using Docker
+        run: >
+          chmod -R 777 ${{ github.workspace }};
+          docker run
+          -v ${{ github.workspace }}:/app
+          -w /app -e DYALOG_SERIAL=${{ secrets.DYALOG_SERIAL }}
+          -e LOAD=/app/tasks/BuildAndPublish.aplf
+          -e GITVERSION="${{ env.GitVersion_LegacySemVer }}"
+          -e GITHUB_TOKEN="${{ github.token }}"
+          -e GITHUB_REPOSITORY="${{ github.repository }}"
+          -e GITHUB_SHA="${{ github.sha }}"
+          ${{ vars.CONTAINER_REGISTRY }}/dyalog:v190-dotnet;
+          exit $?
