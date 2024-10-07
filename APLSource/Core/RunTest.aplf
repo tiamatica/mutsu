@@ -1,4 +1,4 @@
- r←cfg RunTest(testspace testfn);res;⎕TRAP;dmx;∆ST;∆DMX;toString;getMessage
+ r←cfg RunTest(testspace testfn);res;⎕TRAP;dmx;∆ST;∆DMX;toString;getMessage;retval;expr;valens
 ⍝ Run test testfn using configuration cfg
 
  r←NewTestcase testfn
@@ -11,9 +11,8 @@
  retval valens←10 11 testspace.⎕ATX testfn
  expr←valens{⍺=0:⍵ ⋄ ⍺=1:⍵,'⍬' ⋄ '⍬',⍵,'⍬'}testfn
  :If |retval
-    :If cfg.SuccessCode≢testspace⍎expr
-        r.ResultCode←API.TESTRESULT.FAIL
-    :EndIf
+ :AndIf cfg.SuccessCode≢testspace⍎expr
+     r.ResultCode←API.TESTRESULT.FAIL
  :EndIf
  :Return
 
