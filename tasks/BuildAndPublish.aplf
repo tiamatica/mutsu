@@ -2,11 +2,12 @@
  ⎕IO←⎕ML←1
  {}⎕EX⊃⎕SI
  ⎕TRAP←0 'E' '⎕←↑⎕DM,⎕XSI,¨''['',¨(⍕¨⎕LC),¨'']'' ⋄ ⎕OFF 1'
- (version api_key)←2 ⎕NQ '.' 'GetEnvironment' ('TAG' 'API_KEY')
- :If 0∊⍴version   
-    ⎕←'GITVERSION not specified. Aborting'
+ (tag api_key)←2 ⎕NQ '.' 'GetEnvironment' ('TAG' 'API_KEY')
+ :If 0∊⍴tag   
+    ⎕←'GIT TAG not specified. Aborting'
     ⎕OFF 1
  :EndIf
+ version←1↓tag
  ⎕←'Build version: ',version
  root←⊃1 ⎕NPARTS ''
  ⎕←'Working directory: ',root
