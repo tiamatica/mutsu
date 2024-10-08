@@ -24,7 +24,7 @@
  t←⎕SE.Tatin.MyUserSettings.GetRegistry'[tatin-test]'
  key←t.api_key
  ⎕←'The test server key is: ',key
- ⍝⎕←⎕SE.Tatin.PublishPackage packagename '[tatin-test]'
+ ⎕←⎕SE.Tatin.PublishPackage packagename '[tatin-test]'
  ⍝tatin←⎕SE.Tatin.MyUserSettings.GetRegistry'[tatin]'
  ⍝tatin.api_key←api_key
  ⎕OFF 0
