@@ -11,3 +11,4 @@
  r.ReportPath←''                            ⍝ Set path for test-report
  r.ReportType←API.REPORTTYPE.SESSION        ⍝ Type of report.
  r.ReportName←'testreport'                  ⍝ Testreport name (xml files supported)
+ r.SuccessCode←1                            ⍝ For testfn returning a value, def 1 = OK
