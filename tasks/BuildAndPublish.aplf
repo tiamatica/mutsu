@@ -2,7 +2,7 @@
  ⎕IO←⎕ML←1
  {}⎕EX⊃⎕SI
  ⎕TRAP←0 'E' '⎕←↑⎕DM,⎕XSI,¨''['',¨(⍕¨⎕LC),¨'']'' ⋄ ⎕OFF 1'
- version←2 ⎕NQ '.' 'GetEnvironment' 'GITVERSION'
+ (version api_key)←2 ⎕NQ '.' 'GetEnvironment' ('TAG' 'API_KEY')
  :If 0∊⍴version   
     ⎕←'GITVERSION not specified. Aborting'
     ⎕OFF 1
@@ -19,6 +19,11 @@
  parms.targetPath←'./build'
  parms.version←version
  packagename←⎕SE.Tatin.BuildPackage parms
- ⎕←'Publish package ',packagename,' to [tiamatica]'
- ⍝⎕←⎕SE.Tatin.PublishPackage packagename '[tiamatica]'
+ ⎕←'Publish package ',packagename,' to [tatin-test]'
+ t←⎕SE.Tatin.MyUserSettings.GetRegistry'[tatin-test]'
+ key←t.api_key
+ ⎕←'The test server key is: ',key
+ ⍝⎕←⎕SE.Tatin.PublishPackage packagename '[tatin-test]'
+ ⍝tatin←⎕SE.Tatin.MyUserSettings.GetRegistry'[tatin]'
+ ⍝tatin.api_key←api_key
  ⎕OFF 0
