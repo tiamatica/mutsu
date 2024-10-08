@@ -10,11 +10,6 @@
  ⎕TRAP←(~cfg.Debug)/(98 'C' '→Fail')((0 1000)'E'((⍕⎕THIS),'.ErrorHandler'))
  retval valens←10 11 testspace.⎕ATX testfn
  expr←valens{⍺=0:⍵ ⋄ ⍺=1:⍵,'⍬' ⋄ '⍬',⍵,'⍬'}testfn
-⍝ testspace.⍎expr
-⍝ :If |retval
-⍝ :AndIf cfg.SuccessCode≢testspace.⍎expr
-⍝     r.ResultCode←API.TESTRESULT.FAIL
-⍝ :EndIf
  :If retval=0
     testspace.⍎expr
  :ElseIf cfg.SuccessCode≢testspace.⍎expr
