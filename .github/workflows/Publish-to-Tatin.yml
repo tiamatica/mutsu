@@ -28,7 +28,7 @@ jobs:
           -v ${{ github.workspace }}:/app
           -w /app -e DYALOG_SERIAL=${{ secrets.DYALOG_SERIAL }}
           -e LOAD=/app/tasks/BuildAndPublish.aplf
-          -e TAG="${{ github.ref_name }}"
+          -e TAG_VERSION="${{ github.ref_name }}"
           -e GITHUB_TOKEN="${{ github.token }}"
           -e GITHUB_REPOSITORY="${{ github.repository }}"
           -e GITHUB_SHA="${{ github.sha }}"
