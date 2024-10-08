@@ -6,7 +6,7 @@
   files: "",
   group: "tiamatica",
   io: 1,
-  license: "",
+  license: "MIT",
   lx: "",
   maintainer: "",
   minimumAplVersion: "18.0",
