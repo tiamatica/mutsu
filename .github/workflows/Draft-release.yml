@@ -1,0 +1,41 @@
+name: Release draft
+run-name: Create release draft on push to main
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  Release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        with: 
+          fetch-depth: 0
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v3.0.0
+        with:
+          versionSpec: '5.x'
+      
+      - name: Determine Version
+        uses: gittools/actions/gitversion/execute@v3.0.0
+        with:
+          useConfigFile: true
+
+      - run: echo "The GitVersion version is ${{ env.GitVersion_LegacySemVer }}"
+         
+      - run:  >
+          gh release create ${{ env.GitVersion_LegacySemVer }}
+          --prerelease
+          --draft
+          --generate-notes
+          --title "Version ${{ env.GitVersion_LegacySemVer }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
