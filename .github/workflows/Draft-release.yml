@@ -29,9 +29,9 @@ jobs:
         with:
           useConfigFile: true
 
-      - name: Delete all previous draft releases
+      - name: Delete all previous draft releases, excluding pre-releases
         run: |
-          for tag in $(gh release list --json isDraft,tagName --jq '.[] | select(.isDraft == true) | .tagName'); do
+          for tag in $(gh release list --exclude-pre-releases --json isDraft,tagName --jq '.[] | select(.isDraft == true) | .tagName'); do
             gh release delete "$tag"
             echo "deleting release $tag"
           done
