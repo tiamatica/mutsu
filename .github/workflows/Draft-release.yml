@@ -30,11 +30,18 @@ jobs:
         with:
           useConfigFile: true
 
-      - run: echo "The GitVersion version is ${{ env.GitVersion_LegacySemVer }}"
+      - name: Delete all previous draft releases
+        run: |
+          for tag in $(gh release list --json isDraft,tagName --jq '.[] | select(.isDraft == true) | .tagName'); do
+            gh release delete "$tag"
+            echo "deleting release $tag"
+          done
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
          
-      - run:  >
+      - name: Create a new draft release for version ${{ env.GitVersion_LegacySemVer }}
+        run: >
           gh release create ${{ env.GitVersion_LegacySemVer }}
-          --prerelease
           --draft
           --generate-notes
           --title "Version ${{ env.GitVersion_LegacySemVer }}"
