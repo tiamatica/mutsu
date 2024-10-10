@@ -3,7 +3,7 @@
  {}⎕EX⊃⎕SI
  ⎕TRAP←0 'E' '⎕←↑⎕DM,⎕XSI,¨''['',¨(⍕¨⎕LC),¨'']'' ⋄ ⎕OFF 1'
  (tagversion api_key)←2 ⎕NQ '.' 'GetEnvironment' ('TAG_VERSION' 'API_KEY')
- :If 0∊≢¨tagversion 
+ :If 0∊≢¨tagversion  api_key
     ⎕←'Git tag or Tatin API key not specified. Aborting'
     ⎕OFF 1
  :EndIf
@@ -23,9 +23,6 @@
 
  ⍝ Publish to Tatin test server
  ⎕←'Publish package ',packagename,' to [tatin-test]'
- t←⎕SE.Tatin.MyUserSettings.GetRegistry'[tatin-test]'
- key←t.api_key
- ⎕←'The test server key is: ',key
  ⍝⎕←⎕SE.Tatin.PublishPackage packagename '[tatin-test]'
 
  ⍝ Publish to Tatin server
