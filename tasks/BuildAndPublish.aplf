@@ -2,12 +2,11 @@
  ⎕IO←⎕ML←1
  {}⎕EX⊃⎕SI
  ⎕TRAP←0 'E' '⎕←↑⎕DM,⎕XSI,¨''['',¨(⍕¨⎕LC),¨'']'' ⋄ ⎕OFF 1'
- (tagversion api_key)←2 ⎕NQ '.' 'GetEnvironment' ('TAG_VERSION' 'API_KEY')
- :If 0∊≢¨tagversion  api_key
+ (version api_key)←2 ⎕NQ '.' 'GetEnvironment' ('TAG_VERSION' 'API_KEY')
+ :If 0∊≢¨version  api_key
     ⎕←'Git tag or Tatin API key not specified. Aborting'
     ⎕OFF 1
  :EndIf
- version←1↓tagversion
  ⎕←'Build version: ',version
  root←⊃1 ⎕NPARTS ''
  ⎕←'Working directory: ',root
