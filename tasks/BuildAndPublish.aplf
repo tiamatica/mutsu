@@ -1,4 +1,4 @@
- BuildAndPublish;⎕TRAP;⎕IO;⎕ML;root;version;template;ns;json;packagename;parms
+ BuildAndPublish;⎕TRAP;⎕IO;⎕ML;root;version;template;ns;json;packagename;parms;api_key;tatin
  ⎕IO←⎕ML←1
  {}⎕EX⊃⎕SI
  ⎕TRAP←0 'E' '⎕←↑⎕DM,⎕XSI,¨''['',¨(⍕¨⎕LC),¨'']'' ⋄ ⎕OFF 1'
