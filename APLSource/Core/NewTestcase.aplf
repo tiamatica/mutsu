@@ -1,5 +1,6 @@
  r←NewTestcase name
  r←(⊃⎕RSI).⎕NS''
+ r.Assertions←0
  r.Details←''
  r.File←''
  r.Line←0

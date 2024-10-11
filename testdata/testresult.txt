@@ -1,9 +1,10 @@
 Test run on 2024-09-30T10:53:05
-Total suites:   1
-Total tests:    12
-Total errors:   1
-Total failures: 5
-Total skipped:  1
+Total suites:     1
+Total Assertions: 11
+Total tests:      12
+Total errors:     1
+Total failures:   5
+Total skipped:    1
 
 Testsuite: #.Mutsu.Tests.BasicHelpers
  #.Mutsu.Tests.BasicHelpers.testAssertError           ⍝ error:     DOMAIN ERROR Assert[] Assert←{⍺←'' ⋄ ~⍵:⎕SIGNAL⊂('EN' 98)('ENX' 1)('Message'⍺)} 
