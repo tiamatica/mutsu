@@ -13,7 +13,7 @@
  (⍕testspace)⎕NS'Assert' 'Skip' 'Try'
  testspace.⍎¨setupfns
 
- assertCnts←CountFnCalls  'Assert' 'Try'
+ assertCnts←CountFnCalls  '.Assert' '.Try'
  :For testfn :In testfns
      lasttest←testfn≡⊃¯1↑testfns
      ai←⎕AI
@@ -24,7 +24,7 @@
          testspace.⍎¨cleanupfns,setupfns
      :EndIf
      res.Testcases,←testcase
-     assertCnts,←CountFnCalls  'Assert' 'Try'
+     assertCnts,←CountFnCalls  '.Assert' '.Try'
  :EndFor
  res.Assertions←+/res.Testcases.Assertions← ¯2-/assertCnts
  testspace.⍎¨cleanupfns
