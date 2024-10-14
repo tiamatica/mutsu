@@ -1,4 +1,4 @@
- {(rc msg)}←ReportGitHub res;started_at;lf;createTable;fmtTime;fmtTestCase;errorCo;testsCo;passedCo;skippedCo;failureCo;title;summaryTbl;detail;testSuite;conclusion;p;f;s;e;summary;completed_at;code;codeblock;fmtUTCTS;token;repo;sha;clt;a;assertCo
+ {(rc msg)}←ReportGitHub res;started_at;lf;createTable;fmtTime;fmtTestCase;errorCo;testsCo;passedCo;skippedCo;failureCo;title;summaryTbl;detail;testSuite;conclusion;p;f;s;e;summary;completed_at;code;codeblock;fmtUTCTS;token;repo;sha;clt;assertCo;a
 ⍝ Generate report of test cases to GitHub
 ⍝ KD 24-08-21
 ⍝ res: obj, Mutsu result namespace
@@ -39,9 +39,9 @@
  summaryTbl⍪←⊂'---'
  detail←''
  :For testSuite :In res.Testsuites
-     a f s e←{⍵=0:'' ⋄ (⍕⍵),' :x:'}¨testSuite.(Assertions Failures Skipped Errors)
+     f s e←{⍵=0:'' ⋄ (⍕⍵),' :x:'}¨testSuite.(Failures Skipped Errors)
      p←{⍵=0:'' ⋄ (⍕⍵),' :white_check_mark:'}testSuite.(Tests-+/Failures Skipped Errors)
-     summaryTbl⍪←testSuite.Name(⍕testSuite.Tests)a p f s e(fmtTime testSuite.TimeElapsed)
+     summaryTbl⍪←testSuite.Name(⍕testSuite.Tests)(⍕testSuite.Assertions)p f s e(fmtTime testSuite.TimeElapsed)
      detail,←(⊂'## ',testSuite.Name),fmtTestCase¨testSuite.Testcases
  :EndFor
  :If ∨/0<res.(Errors Skipped Failures)
