@@ -4,12 +4,11 @@
  cfg.batch←1
  cfg.folder←'.'
  ⎕SE.Cider.OpenProject cfg
- 
+
  :Trap 0
-     #.Mutsu.RunTests
+     #.Mutsu.RunTests 0
  :Else
      ⎕←↑⎕DM
      ⎕OFF 1
  :EndTrap
  ⎕OFF 0
-

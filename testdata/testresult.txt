@@ -1,6 +1,6 @@
-Test run on 2024-09-30T10:53:05
+Test run on 2024-10-11T22:33:45
 Total suites:     1
-Total Assertions: 11
+Total assertions: 11
 Total tests:      12
 Total errors:     1
 Total failures:   5

@@ -3,7 +3,7 @@
  r←0⍴⊂''
  r,←⊂testresult.Name,' on ',FormatTS testresult.Timestamp
  r,←⊂'Total suites:     ',⍕≢testresult.Testsuites
- r,←⊂'Total Assertions: ',⍕testresult.Assertions
+ r,←⊂'Total assertions: ',⍕testresult.Assertions
  r,←⊂'Total tests:      ',⍕testresult.Tests
  r,←⊂'Total errors:     ',⍕testresult.Errors
  r,←⊂'Total failures:   ',⍕testresult.Failures
