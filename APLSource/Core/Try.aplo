@@ -3,7 +3,7 @@
  ⎕IO←0
  expected←{3=10|⎕DR ⍵:⎕EM ⍵ ⋄ ⍵}err
  msg←(err≡0)⊃('Expected exception [',expected,']')'Expected no exception'
- (attr_res attr_val)←2↑↑⍬⍴⎕AT'rop'
+ (attr_res attr_val)←10 11⎕ATX'rop'
  ⍎(0=⎕NC'larg')/'larg←⊢'
  :Trap 0
      :If (0=attr_res)∧(2=|attr_val)
