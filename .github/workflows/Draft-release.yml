@@ -49,11 +49,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
          
-      - name: Create a new draft release for version ${{ env.GitVersion_LegacySemVer }}
+      - name: Create a new draft release for version v${{ env.GitVersion_LegacySemVer }}
         run: >
-          gh release create ${{ env.GitVersion_LegacySemVer }}
+          gh release create v${{ env.GitVersion_LegacySemVer }}
           --draft
           --generate-notes
-          --title "Version ${{ env.GitVersion_LegacySemVer }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

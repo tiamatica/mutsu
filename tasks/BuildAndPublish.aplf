@@ -1,12 +1,17 @@
- BuildAndPublish;⎕TRAP;⎕IO;⎕ML;root;version;template;ns;json;packagename;parms;api_key;tatin
+ BuildAndPublish;⎕TRAP;⎕IO;⎕ML;root;version;template;ns;json;packagename;parms;api_key;tatin;git_tag
  ⎕IO←⎕ML←1
  {}⎕EX⊃⎕SI
  ⎕TRAP←0 'E' '⎕←↑⎕DM,⎕XSI,¨''['',¨(⍕¨⎕LC),¨'']'' ⋄ ⎕OFF 1'
- (version api_key)←2 ⎕NQ '.' 'GetEnvironment' ('TAG_VERSION' 'API_KEY')
- :If 0∊≢¨version  api_key
+ (git_tag api_key)←2 ⎕NQ '.' 'GetEnvironment' ('TAG_VERSION' 'API_KEY')
+ :If 0∊≢¨git_tag  api_key
     ⎕←'Git tag or Tatin API key not specified. Aborting'
     ⎕OFF 1
  :EndIf
+ :If 0=≢'^v?[0-9]+.[0-9]+.[0-9]+'⎕S'&'⊢git_tag
+    ⎕←'Not a valid version number. Aborting'
+    ⎕OFF 1
+ :EndIf
+ version←'v'((=∘⊃)↓⊢)git_tag
  ⎕←'Build version: ',version
  root←⊃1 ⎕NPARTS ''
  ⎕←'Working directory: ',root
