@@ -9,7 +9,7 @@
   license: "MIT",
   lx: "",
   maintainer: "",
-  minimumAplVersion: "18.0",
+  minimumAplVersion: "18.2",
   ml: 1,
   name: "Mutsu",
   os_lin: 1,
