@@ -29,7 +29,6 @@
      testsuite←cfg RunTestsuite testnamespace
      :If ~0∊⍴testsuite.Testcases
          res.Testsuites,←testsuite
-         res.Assertions←+/res.Testsuites.Assertions
      :EndIf
  :EndFor
  ⎕PROFILE⍣profile⊢'clear'
