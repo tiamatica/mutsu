@@ -97,7 +97,12 @@ For  xml reports select value 2 or `Mutsu.REPORTTYPE.JUNIT`
 
 Default: `testreport`  
 
+### SuccessCode
 
+Default: `1`
+
+When test functions use a return code to signal success or fail,  
+this defines what constitutes a passed test.
 
 ## Validation helpers
 Helper functions are copied into any space containing test functions  
@@ -105,8 +110,10 @@ and can be used in your test functions.
 
 ### Assert
 Use Assert in your test functions to check that  
-your expressions are true . 
+your expressions are true.   
 `Assert 'your expected result'≡Function to test`  
+The total number of the calls to the the functions `Assert` and `Try`  
+is displayed in the test report.
 
 ### Skip
 If your test function for some reason is not completed yet  
@@ -118,4 +125,20 @@ then use Skip in test function.
 is an operator to check if a tested function returns the expected  
 error code or error message.  
 `(11 Try #.myProj.CalcSum_test) 'a'`  
-this test will pass as CalcSum generates a Domain Error.
+this test will pass as CalcSum generates a Domain Error.  
+
+## Test report
+
+An example of the test report:  
+```
+Test run on 2024-10-14T14:54:39                                                                                        
+Total suites:     1                                                                                                    
+Total assertions: 2                                                                                                    
+Total tests:      2                                                                                                    
+Total errors:     0                                                                                                    
+Total failures:   1                                                                                                    
+Total skipped:    0                                                                                                    
+                                                                                                                       
+Testsuite: #.Mutsu.Tests.BasicHelpers                                                                                  
+ #.Mutsu.Tests.BasicHelpers.testTryErrorMessageFail   ⍝ failure:   Expected exception [VALUE] got [DOMAIN ERROR]
+ ``` 

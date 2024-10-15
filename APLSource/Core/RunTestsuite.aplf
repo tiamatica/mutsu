@@ -1,4 +1,4 @@
- res←cfg RunTestsuite testspace;res;allfns;testfns;testfn;ai;testcase;setupfns;cleanupfns;lasttest
+ res←cfg RunTestsuite testspace;res;allfns;testfns;testfn;ai;testcase;setupfns;cleanupfns;lasttest;assertCnts
 ⍝ Run tests using configuraition in cfg
 ⍝ Return a result space.
 
@@ -13,6 +13,7 @@
  (⍕testspace)⎕NS'Assert' 'Skip' 'Try'
  testspace.⍎¨setupfns
 
+ assertCnts←GetAssertionCount
  :For testfn :In testfns
      lasttest←testfn≡⊃¯1↑testfns
      ai←⎕AI
@@ -23,8 +24,9 @@
          testspace.⍎¨cleanupfns,setupfns
      :EndIf
      res.Testcases,←testcase
+     assertCnts,←GetAssertionCount
  :EndFor
-
+ res.Assertions←+/res.Testcases.Assertions← ¯2-/assertCnts
  testspace.⍎¨cleanupfns
  res.TimeElapsed←86400×-/1 ⎕DT ⎕TS res.Timestamp
  res.Tests←≢res.Testcases

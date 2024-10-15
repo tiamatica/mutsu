@@ -1,0 +1,8 @@
+ r←GetAssertionCount;pD;fn
+⍝ Count number of times assertion fns have been called
+⍝ JN 14-10-24
+⍝ r: ns, amount of found names
+ pD←⎕PROFILE'data'
+ fn←⌽¨'.Assert' '.Try'
+ r←+/((⊣/⊃∨/fn⍷¨⊂↑⌽¨pD[;1])∧pD[;2]∊⊂⍬)/pD[;3]
+⍝

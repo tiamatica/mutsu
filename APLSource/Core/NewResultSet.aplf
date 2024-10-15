@@ -1,6 +1,6 @@
  r←NewResultSet
  r←(⊃⎕RSI).⎕NS''
-⍝ r.Assertions←0
+ r.Assertions←0
  r.Errors←0
  r.Failures←0
  r.Name←'Test run'

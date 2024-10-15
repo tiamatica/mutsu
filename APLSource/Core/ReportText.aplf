@@ -2,11 +2,12 @@
 ⍝ Generate test report as text
  r←0⍴⊂''
  r,←⊂testresult.Name,' on ',FormatTS testresult.Timestamp
- r,←⊂'Total suites:   ',⍕≢testresult.Testsuites
- r,←⊂'Total tests:    ',⍕testresult.Tests
- r,←⊂'Total errors:   ',⍕testresult.Errors
- r,←⊂'Total failures: ',⍕testresult.Failures
- r,←⊂'Total skipped:  ',⍕testresult.Skipped
+ r,←⊂'Total suites:     ',⍕≢testresult.Testsuites
+ r,←⊂'Total assertions: ',⍕testresult.Assertions
+ r,←⊂'Total tests:      ',⍕testresult.Tests
+ r,←⊂'Total errors:     ',⍕testresult.Errors
+ r,←⊂'Total failures:   ',⍕testresult.Failures
+ r,←⊂'Total skipped:    ',⍕testresult.Skipped
  :For testsuite :In testresult.Testsuites
      :If ∨/issues←~testsuite.Testcases.ResultCode∊API.TESTRESULT.PASS
          r,←⊂''

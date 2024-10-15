@@ -1,7 +1,8 @@
- RunTests;cfg
+ RunTests debug;cfg
 ⍝ Run internal tests
  Core.HttpCommand←HttpCommand ⍝ need this as Core is exported as package
  cfg←Core.NewConfiguration
+ cfg.Debug←debug
  cfg.TestSpaces←Tests
  cfg.PatternIgnoreCase←0
  cfg.TestIncludePattern←'^Test'

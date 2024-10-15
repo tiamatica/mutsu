@@ -1,5 +1,6 @@
  r←NewTestsuite name
  r←(⊃⎕RSI).⎕NS''
+ r.Assertions←0
  r.Errors←0
  r.Failures←0
  r.File←4⊃GetObjectInfo name
