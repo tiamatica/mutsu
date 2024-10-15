@@ -1,5 +1,5 @@
  r←GetAssertionCount;pD;fn
-⍝ Counting names defined in fn
+⍝ Count number of times assertion fns have been called
 ⍝ JN 14-10-24
 ⍝ r: ns, amount of found names
  pD←⎕PROFILE'data'
