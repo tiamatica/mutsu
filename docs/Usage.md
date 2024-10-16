@@ -1,22 +1,24 @@
 # Using Mutsu
 When adding the Mutsu package to your project, `myProj`,  
-it will add the Mutsu namespace to your project space.
+it will add the Mutsu namespace to your project space .  
+`#.myProj.Mutsu`
 
 
 You can place your test functions anywhere in your project folder.  
 For a manageable structure you can create a namespace for your tests, e.g.:  
 `)ns #.myProj.Tests`  
-where you add your test functions, e.g.: `TestMyFunction`  
+where you create your test functions with names that either start with  
+`Test` or end with `_Test`(case-insensitive). Then call the RunTests  
+function with the reference to that namespace as right argument.  
+`#.myProj.Mutsu.RunTests myProj.Tests`  
+It'll return a result space, a test report, that will be saved  
+according to the settings of 
+`ReportType`.   
 
-
-Before beeing able to run your test functions you **have to**  
-run Mutsu's RunTests once.  
-`#.myProj.Mutsu.RunTests myProj.Tests`   
 
 The argument of RunTests is either a configuration space (NewConfiguration),  
 a namespace  or a vector of namespaces to scan for tests.  
 If arg is empty it will scan the calling space for tests.  
-It'll return a result space.  
 The initial execution of RunTests will also place helper functions  
 in each namespace containing tests.
 
@@ -51,7 +53,8 @@ in your `myRunTests` function.
 ### Assert
 Use Assert in your test functions to check that  
 your expressions are true.   
-`Assert 'your expected result'≡Function to test`  
+`Assert 'your expected result'≡Function to test`   
+e.g.: `Assert 1 ≡ {4=2+2}`  
 The total number of the calls to the the functions `Assert` and `Try`  
 is displayed in the test report.
 
@@ -59,13 +62,13 @@ is displayed in the test report.
 If your test function for some reason is not completed yet  
 but you want to view in your report that it exists,  
 then use Skip in test function.  
-`Skip 'awaiting'`
+`Skip testMyFn`
 
 ### Try
 is an operator to check if a tested function returns the expected  
 error code or error message.  
 `(11 Try #.myProj.CalcSum_test) 'a'`  
-this test will pass as CalcSum generates a Domain Error.  
+this test will pass as CalcSum generates a Domain Error as w expected.  
 
 ## Test report
 
@@ -79,6 +82,6 @@ Total errors:     0
 Total failures:   1                                                                                                    
 Total skipped:    0                                                                                                    
                                                                                                                        
-Testsuite: #.Mutsu.Tests.BasicHelpers                                                                                  
- #.Mutsu.Tests.BasicHelpers.testTryErrorMessageFail   ⍝ failure:   Expected exception [VALUE] got [DOMAIN ERROR]
+Testsuite: #.Mutsu.Tests                                                                                
+ #.Mutsu.Tests.testFail   ⍝ failure:   Expected exception [VALUE] got [DOMAIN ERROR]
  ``` 
