@@ -11,8 +11,9 @@ where you add your test functions, e.g.: `TestMyFunction`
 
 Before beeing able to run your test functions you **have to**  
 run Mutsu's RunTests once.  
-`#.myProj.Mutsu.RunTests myProj.Tests`  
-The arg of RunTests is either a configuration space (NewConfiguration),  
+`#.myProj.Mutsu.RunTests myProj.Tests`   
+
+The argument of RunTests is either a configuration space (NewConfiguration),  
 a namespace  or a vector of namespaces to scan for tests.  
 If arg is empty it will scan the calling space for tests.  
 It'll return a result space.  
@@ -25,7 +26,7 @@ To setup your own configuration create a function *myRunTests* in your
 root directory where you specify your settings.  
 In this function you first get the default config, then you make your  
 changes and finally run the Mutsu.RunTests passing your modified config.  
-
+For further info about the settings, see: [Configs](Configs.md). 
 
 
 Example:  
@@ -39,74 +40,13 @@ Example:
  res←Mutsu.RunTests cfg
 ∇
 ```
-
-## The Settings
-### Debug  
-Default: `0`  
-
-If `0` all tests are executed without stopping at error detection.  
-set to 1 , execution is stopped when errors are encountered.
-
-### TestSpaces 
-Default: `⍬`  
-  
-The `TestSpaces` can be a single namespace or a vector of namespaces. To scan the entire workspaceset it to `#`.  
-
-### PatternIgnoreCase
-Default: 1
-
-Case insensitivity flag for the include patterns of test, cleanup and setup. 
-Set to 0 for case-sensitive match.
-
-### TestIncludePattern  
-Default: '^test|_test$' 
-
-Possible to modify to any regex filter.
-
-### CleanupIncludePattern  
-Default: '^cleanup'  
-
-Possible to modify to any regex filter.  
-Cleanup functions are executed always after tests are done.  
-
-### SetupIncludePattern
-
-Default: '^setup' 
-
-Possible to modify to any regex filter.  
-Setup functions are executed always before running the tests.  
-If some test doesn't pass then cleanup and setup functions are  
-executed before continuing with testfunctions.  
-
-### ReportPath  
-
-Default: `''`
-
-assign it with the path where you want to save your reports, e.g:  
-`ReportPath←'.\reports\' ` 
-
-### ReportType
-
-Default: `API.REPORTTYPE.SESSION`
-
-To save the report as txt file assign the ReportType by value 1  
-or `Mutsu.REPORTTYPE.TXT`  
-For  xml reports select value 2 or `Mutsu.REPORTTYPE.JUNIT`
-
-### ReportName
-
-Default: `testreport`  
-
-### SuccessCode
-
-Default: `1`
-
-When test functions use a return code to signal success or fail,  
-this defines what constitutes a passed test.
-
 ## Validation helpers
 Helper functions are copied into any space containing test functions  
 and can be used in your test functions.
+If you write test functions 
+which return a value, you will not need these helpers.  
+Make sure to set `SuccessCode` to the value of your choice  
+in your `myRunTests` function.
 
 ### Assert
 Use Assert in your test functions to check that  

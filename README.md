@@ -8,7 +8,8 @@ Add the Mutsu package to your project:
 ```  
 
 ## Getting Started  
-For more info how to use Mutsu, see [Usage](./docs/Usage.md).
+For more info how to use Mutsu, see [Usage](./docs/Usage.md).  
+Here, in [Configs](./docs/Configs.md), the settings of the configuration are explained.  
     
 Create your test functions with names that either start with `Test` or end with `_Test`(case-insensitive).  
 Run Mutsu's RunTests   
