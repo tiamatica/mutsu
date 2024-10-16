@@ -1,10 +1,10 @@
- BuildAndPublish;⎕TRAP;⎕IO;⎕ML;root;version;template;ns;json;packagename;parms;api_key;tatin;git_tag
+ BuildAndPublish;⎕TRAP;⎕IO;⎕ML;root;version;template;ns;json;packagename;parms;api_key;tatin;git_tag; registry
  ⎕IO←⎕ML←1
  {}⎕EX⊃⎕SI
  ⎕TRAP←0 'E' '⎕←↑⎕DM,⎕XSI,¨''['',¨(⍕¨⎕LC),¨'']'' ⋄ ⎕OFF 1'
- (git_tag api_key)←2 ⎕NQ '.' 'GetEnvironment' ('TAG_VERSION' 'API_KEY')
- :If 0∊≢¨git_tag  api_key
-    ⎕←'Git tag or Tatin API key not specified. Aborting'
+ (git_tag registry api_key)←2 ⎕NQ '.' 'GetEnvironment' ('TAG_VERSION' 'TATIN_REGISTRY' 'API_KEY')
+ :If 0∊≢¨git_tag registry api_key
+    ⎕←'Git tag, registry or API key not specified. Aborting'
     ⎕OFF 1
  :EndIf
  version←⊃'^v?(\d+\.\d+\.\d+(-[^.]+)?)$'⎕S'\1'⊢git_tag
@@ -12,6 +12,7 @@
     ⎕←'Not a valid version number. Aborting'
     ⎕OFF 1
  :EndIf
+ 
  ⎕←'Build version: ',version
  root←⊃1 ⎕NPARTS ''
  ⎕←'Working directory: ',root
@@ -25,13 +26,8 @@
  parms.version←version
  packagename←⎕SE.Tatin.BuildPackage parms
 
- ⍝ Publish to Tatin test server
- ⎕←'Publish package ',packagename,' to [tatin-test]'
- ⍝⎕←⎕SE.Tatin.PublishPackage packagename '[tatin-test]'
-
- ⍝ Publish to Tatin server
- ⍝ ⎕←'Publish package ',packagename,' to [tatin]'
- ⍝ tatin←⎕SE.Tatin.MyUserSettings.GetRegistry'[tatin]'
- ⍝ tatin.api_key←api_key
- ⍝ ⎕←⎕SE.Tatin.PublishPackage packagename '[tatin]'
+ ⎕←'Publish package ',packagename,' to ',registry
+ tatin←⎕SE.Tatin.MyUserSettings.GetRegistry registry
+ tatin.api_key←api_key
+ ⎕←⎕SE.Tatin.PublishPackage packagename registry
  ⎕OFF 0
