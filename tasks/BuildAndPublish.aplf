@@ -7,11 +7,11 @@
     ⎕←'Git tag or Tatin API key not specified. Aborting'
     ⎕OFF 1
  :EndIf
- :If 0=≢'^v?[0-9]+.[0-9]+.[0-9]+'⎕S'&'⊢git_tag
+ version←⊃'^v?(\d+\.\d+\.\d+(-[^.]+)?)$'⎕S'\1'⊢git_tag
+ :If 0=≢version
     ⎕←'Not a valid version number. Aborting'
     ⎕OFF 1
  :EndIf
- version←'v'((=∘⊃)↓⊢)git_tag
  ⎕←'Build version: ',version
  root←⊃1 ⎕NPARTS ''
  ⎕←'Working directory: ',root
