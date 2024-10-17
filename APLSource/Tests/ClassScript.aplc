@@ -1,0 +1,10 @@
+:Class ClassScript 
+    ∇ r←testAdd
+      :Access public shared
+      r←2=1+1
+    ∇
+    ∇ testAddUsingAssert 
+      :Access public shared
+      Assert 2=1+1
+    ∇
+:EndClass

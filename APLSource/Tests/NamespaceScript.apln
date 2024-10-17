@@ -1,0 +1,6 @@
+:Namespace NamespaceScript
+    testAdd←{2=1+1}
+    ∇ testMod
+      Assert |-1
+    ∇
+:EndNamespace
