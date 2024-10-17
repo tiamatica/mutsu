@@ -1,0 +1,39 @@
+name: Publish release to Tatin
+run-name: Publish release ${{ github.ref_name }} to Tatin server
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+      
+jobs: 
+  Publish:
+    runs-on: ubuntu-latest
+    environment: test
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Login to Azure CR
+        uses: azure/docker-login@v2
+        with:
+          login-server: ${{ vars.CONTAINER_REGISTRY }}
+          username: ${{ secrets.AZURE_ACR_USR }}
+          password: ${{ secrets.AZURE_ACR_PWD }}
+
+      - name: Run BuildAndPublish using Docker
+        run: >
+          chmod -R 777 ${{ github.workspace }};
+          docker run
+          -v ${{ github.workspace }}:/app
+          -w /app -e DYALOG_SERIAL=${{ secrets.DYALOG_SERIAL }}
+          -e LOAD=/app/tasks/BuildAndPublish.aplf
+          -e TAG_VERSION="${{ github.ref_name }}"
+          -e GITHUB_TOKEN="${{ github.token }}"
+          -e GITHUB_REPOSITORY="${{ github.repository }}"
+          -e GITHUB_SHA="${{ github.sha }}"
+          -e API_KEY="${{ secrets.TATIN_API_KEY }}"
+          -e TATIN_REGISTRY="${{ vars.TATIN_REGISTRY }}"
+          ${{ vars.CONTAINER_REGISTRY }}/dyalog:v190-dotnet;
+          exit $?

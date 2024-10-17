@@ -1,0 +1,50 @@
+name: Release draft
+run-name: Create release draft on push to main
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  Release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        with: 
+          fetch-depth: 0
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v3.0.0
+        with:
+          versionSpec: '5.x'
+      
+      - name: Determine Version
+        uses: gittools/actions/gitversion/execute@v3.0.0
+        with:
+          useConfigFile: true
+
+      - name: Delete all releases that are drafts, target main branch, and that are not pre-releases
+        run: |
+          for tag in $(gh release list --exclude-pre-releases --json isDraft,tagName --jq '.[] | select(.isDraft == true) | .tagName'); do
+            target=$(gh release view "$tag" --json targetCommitish --jq '.targetCommitish')
+            if [[ "$target" == "main" ]]; then
+              gh release delete "$tag" --yes
+              echo "deleting $tag"
+            fi
+          done
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         
+      - name: Create a new draft release for version v${{ env.GitVersion_LegacySemVer }}
+        run: >
+          gh release create v${{ env.GitVersion_LegacySemVer }}
+          --draft
+          --generate-notes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
