@@ -3,6 +3,7 @@ run-name: Publish release ${{ github.ref_name }} to Tatin server
 on:
   release:
     types: [published]
+  workflow_dispatch:
       
 jobs: 
   Publish:

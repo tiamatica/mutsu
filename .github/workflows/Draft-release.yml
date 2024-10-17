@@ -29,22 +29,14 @@ jobs:
         with:
           useConfigFile: true
 
-      - name: List all releases that are drafts, not pre-releases, and targets main branch
+      - name: Delete all releases that are drafts, target main branch, and that are not pre-releases
         run: |
           for tag in $(gh release list --exclude-pre-releases --json isDraft,tagName --jq '.[] | select(.isDraft == true) | .tagName'); do
             target=$(gh release view "$tag" --json targetCommitish --jq '.targetCommitish')
             if [[ "$target" == "main" ]]; then
-              echo "The release draft $tag is targeting main branch"
+              gh release delete "$tag" --yes
+              echo "deleting $tag"
             fi
-          done
-        env:
-         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Delete all previous draft releases, excluding pre-releases
-        run: |
-          for tag in $(gh release list --exclude-pre-releases --json isDraft,tagName --jq '.[] | select(.isDraft == true) | .tagName'); do
-            gh release delete "$tag"
-            echo "deleting release $tag"
           done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
