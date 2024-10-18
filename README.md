@@ -1,6 +1,6 @@
-# <center>Mutsu</center>
-<center>Mutsu is an easy-to-use and flexible
-test framework for Dyalog APL. :green_apple: </center>
+# Mutsu
+
+Mutsu is an easy-to-use and flexible test framework for Dyalog APL.
 
 
 ## How to use it 
