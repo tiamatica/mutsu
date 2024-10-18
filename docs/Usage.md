@@ -142,3 +142,4 @@ Total skipped:    0
 Testsuite: #.Mutsu.Tests.BasicHelpers                                                                                  
  #.Mutsu.Tests.BasicHelpers.testTryErrorMessageFail   ⍝ failure:   Expected exception [VALUE] got [DOMAIN ERROR]
  ``` 
+

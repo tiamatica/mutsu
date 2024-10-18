@@ -33,7 +33,7 @@ Skip function_test ⍝ This test isn't ready yet.
 2 (11 code.Try {⍺÷⍵}) 0 ⍝ We expected a Domain error and we got it
 ````
 
-For more examples on how to use Mutsu see Usage examples.<br>
+For more examples on how to use Mutsu see [Usage examples](./docs/UsageExamples.md).<br>
 You can of course name your functions however you like, save the report as a text file, stop on errors, add a setup function, and in general modify the behaviour. See [Configuration](./docs/Configuration.md) for default settings and how you can configure them.
 
 ## Installation
