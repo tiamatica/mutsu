@@ -6,5 +6,5 @@ res←##.Core.RunTests cfg
 Assert 1=≢res.Testsuites
 suite←⊃res.Testsuites
 Assert suite.Name≡'#.Mutsu.Tests.ClassScript'
-Assert suite.Tests≡2
+Assert suite.Tests≡1
 ⍝
