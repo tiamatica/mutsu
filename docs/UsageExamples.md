@@ -64,18 +64,19 @@ Use Try to check that a function returns the expected  error code or error messa
 ```
 ## Test Result
 
-The result report will display the time when the tests were run, along with the total number of test suites and individual tests. If there were any errors, failures or skipped functions, the report will provide additional information. *Failures* are tests that did not pass, *errors* are tests that encountered runtime issues, and *skipped* tests are those omitted using the `Skip` function.
+The result report will display the time when the tests were run, along with the total number of test suites, the number of times that `Assert` and `Try` were called, and the total number of individual tests. If there were any errors, failures or skipped functions, the report will provide additional information. *Failures* are tests that did not pass, *errors* are tests that encountered runtime issues, and *skipped* tests are those omitted using the `Skip` function.
 
 In the example below, one test suite, containing one test was run. There was one failure, which will display more information. Here we can see that the failure occured in the test suite *Tests*, in the function *function_test*, and that the failure was an *Affirm error*.
 
 ```
-Test run on 2024-10-17T16:19:12
-Total suites:   1
-Total tests:    1
-Total errors:   0
-Total failures: 1
-Total skipped:  0
-
-Testsuite: #.Tests
- #.Tests.function_test  ⍝ failure:   AFFIRM ERROR function_test[4] Assert 1≡2 
+Test run on 2024-10-18T12:13:54                                               
+Total suites:     1                                                           
+Total assertions: 1                                                           
+Total tests:      1                                                           
+Total errors:     0                                                           
+Total failures:   1                                                           
+Total skipped:    0                                                           
+                                                                              
+Testsuite: #.Tests                                                            
+ #.Tests.function_test  ⍝ failure:   AFFIRM ERROR function_test[1] Assert 1≡2 
  ```
