@@ -5,13 +5,13 @@
 ⍝ If arg is empty, scan calling space for tests.
 ⍝ Return a result space.
 
- :If 0∊⍴arg                            ⍝ if empty...
+ :If 0∊⍴arg                                     ⍝ if empty...
      cfg←NewConfiguration
-     cfg.TestSpaces,←⊃⎕RSI             ⍝ ...scan calling space
- :ElseIf 1<≢arg                        ⍝ if more than one
- :OrIf (⍕arg)≢'[Mutsu configuration]'  ⍝ or not a config space
+     cfg.TestSpaces,←(∨/'_tatin.t'⍷⍕⊃⎕RSI)↓⎕RSI ⍝ ...scan calling space
+ :ElseIf 1<≢arg                                 ⍝ if more than one
+ :OrIf (⍕arg)≢'[Mutsu configuration]'           ⍝ or not a config space
      cfg←NewConfiguration
-     cfg.TestSpaces,←arg               ⍝ ...assume refs to scan
+     cfg.TestSpaces,←arg                        ⍝ ...assume refs to scan
  :Else
      cfg←arg
  :EndIf
