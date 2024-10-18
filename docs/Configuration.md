@@ -1,8 +1,8 @@
 # Configuration
 
-The function `Mutsu.NewConfiguration` sets up a default configuration. To customize this, first retrieve the default configuration, then adjust it with your desired settings. For instance, you can create a function  *myRunTests*, where you define your custom settings, and then pass the modified configuration to `Mutsu.RunTests`
+The function `Mutsu.NewConfiguration` sets up a default configuration. To customize this, first retrieve the default configuration, then adjust it with your desired settings. For instance, you can create a function  `myRunTests`, where you define your custom settings, and then pass the modified configuration to `Mutsu.RunTests`
 
-``` APL
+```apl
 ∇myRunTests; cfg; res  
  cfg←Mutsu.NewConfiguration  
  cfg.TestSpaces←Tests 
@@ -28,22 +28,23 @@ The TestSpaces can be either a single namespace or a vector of namespaces. To sc
 ### PatternIgnoreCase
 Default: `1`
 
-Flag for whether or not to ignore case when searching for the patterns (specified below) for test, cleanup and setup.<br>
+Flag for whether or not to ignore case when searching for the patterns (specified below) for test, cleanup and setup.
+
 `0`: Case-sensitive match.
 
 ### TestIncludePattern  
-Default: '^test|_test$' 
+Default: `'^test|_test$'`
 
 Possible to modify to any regex filter.
 
 ### CleanupIncludePattern  
-Default: '^cleanup'  
+Default: `'^cleanup'`
 
 Possible to modify to any regex filter.  
 Cleanup functions are always executed after tests are done.  
 
 ### SetupIncludePattern
-Default: '^setup' 
+Default: `'^setup'`
 
 Possible to modify to any regex filter.  
 Setup functions are always executed before running the tests. If a test fails, then cleanup and setup functions are executed before continuing with test functions.  
