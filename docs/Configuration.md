@@ -35,7 +35,7 @@ Flag for whether or not to ignore case when searching for the patterns (specifie
 ### TestIncludePattern  
 Default: `'^test|_test$'`
 
-Possible to modify to any regex filter.
+All function names that match the expression will be run when calling `RunTests`. This is possible to modify to any regex filter.
 
 ### CleanupIncludePattern  
 Default: `'^cleanup'`
@@ -58,7 +58,7 @@ The path where you want to save your reports, e.g.:
 ### ReportType
 Default: `API.REPORTTYPE.SESSION`
 
-To save the report as a .txt file, set it to `Mutsu.REPORTTYPE.TXT` or 1. For XML set it to `Mutsu.REPORTTYPE.JUNIT` or 2.
+To save the report as a .txt file, set it to `Mutsu.REPORTTYPE.TXT` or `1`. For XML set it to `Mutsu.REPORTTYPE.JUNIT` or `2`.
 
 ### ReportName
 Default: `'testreport'`  
