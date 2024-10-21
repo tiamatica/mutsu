@@ -1,17 +1,7 @@
 # Configuration
 
-The function `Mutsu.NewConfiguration` sets up a default configuration. To customize this, first retrieve the default configuration, then adjust it with your desired settings. For instance, you can create a function  `myRunTests`, where you define your custom settings, and then pass the modified configuration to `Mutsu.RunTests`
+The function `Mutsu.NewConfiguration` sets up a default configuration. To customize this, first retrieve the default configuration, then adjust it with your desired settings. 
 
-```apl
-∇myRunTests; cfg; res  
- cfg←Mutsu.NewConfiguration  
- cfg.TestSpaces←Tests 
- cfg.TestIncludePattern←'Test_'  
- cfg.ReportType←Mutsu.REPORTTYPE.TXT  
- cfg.ReportPath←'.\reports\'  
- res←Mutsu.RunTests cfg
-∇
-```
 
 ## The Settings
 ### Debug  
