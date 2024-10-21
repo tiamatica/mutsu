@@ -1,0 +1,10 @@
+ filesuffix SaveReport cfg;pathsep;⎕IO
+ ⎕IO←0
+ 3 ⎕MKDIR cfg.ReportPath
+ :If ~⎕NEXISTS cfg.ReportPath
+     ⎕←'Could not create directory'
+ :Else
+     pathsep←('Win'≡3↑⊃# ⎕WG'APLVersion')⌷'/\'
+     cfg.ReportPath,←pathsep{(⍺≠¯1↑⍵)/⍺}cfg.ReportPath
+     (⊂xml)⎕NPUT(cfg.ReportPath,cfg.ReportName,filesuffix)1
+ :EndIf

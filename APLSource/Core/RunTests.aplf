@@ -41,12 +41,10 @@
      ⎕←↑ReportText res
  :Case API.REPORTTYPE.TXT
      xml←ReportText res
-     3 ⎕MKDIR cfg.ReportPath
-     (⊂xml)⎕NPUT(cfg.ReportPath,cfg.ReportName,'.txt')1
+     '.txt'SaveReport cfg
  :Case API.REPORTTYPE.JUNIT
      xml←ReportJUnit res
-     3 ⎕MKDIR cfg.ReportPath
-     (⊂xml)⎕NPUT(cfg.ReportPath,cfg.ReportName,'.xml')1
+     '.xml'SaveReport cfg
  :Case API.REPORTTYPE.GITHUB
      ⎕←'Posting to GitHub'
      rc msg←ReportGitHub res ⍝ Try posting to GitHub
