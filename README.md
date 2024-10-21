@@ -22,7 +22,7 @@ Total failures: 0
 Total skipped:  0 
 ```
 
-There are three helper functions that you can use inside your tests: `Assert`, `Skip` and `Try`. Calling `Mutsu.RunTests` the first time will place these functions inside your test namespaces.
+There are three helper functions that you can use inside your tests: `Assert`, `Skip` and `Try`. Calling `Mutsu.RunTests` will place these functions inside your test namespaces before invoking your tests.
 
 ```apl
 Assert 2=addOne 1 ⍝ Assert that result matches expected value.

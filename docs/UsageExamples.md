@@ -44,10 +44,13 @@ Assert expected≡addOne 1
 ``` 
 
 ### Skip
-Use `Skip` if you have test functions that are not completed yet, but you still want to include them in the test result report.
+Use `Skip` if you have test functions that are not completed yet or not applicable in the current environment, but you still want to include them in the test result report.
 
 ```apl
 Skip 'This test isn't ready yet.'
+⍝ or
+Skip ('20.0'≡4↑2⊃'.'⎕WG'APLVersion')/'Won''t run on version 20.0'
+
 ```
 
 ### Try
@@ -60,14 +63,14 @@ Use `Try` to check that a function returns the expected  error code or error mes
 
 4 (0 Try {⍺÷⍵}) 2 ⍝ We do not expect an error.
 
-4 ('DOMAIN' Try {⍺÷⍵}) 0 ⍝ We can also specify the error as a substring.
+4 ('DOMAIN' Try {⍺÷⍵}) 0 ⍝ We can also specify the error as a substring of the diagnostic message.
 ```
 
 ## Test Result
 
 The result report will display the time when the tests were run, along with the total number of test suites, the number of times that `Assert` and `Try` were called, and the total number of individual tests. If there were any errors, failures or skipped functions, the report will provide additional information. *Failures* are tests that did not pass, *errors* are tests that encountered runtime issues, and *skipped* are those omitted using the `Skip` function.
 
-In the example below, one test suite, containing one test was run. There was one failure, which will display more information. Here we can see that the failure occured in the test suite `Tests`, in the function `function_test`, and that the failure was an *Affirm error*.
+In the example below, one test suite containing one test was run. There was one failure, which will display more information. Here we can see that the failure occurred in the test suite `Tests`, in the function `function_test`, and that the failure was an *Affirm error*.
 
 ```
 Test run on 2024-10-18T12:13:54                                               
