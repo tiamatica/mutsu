@@ -6,7 +6,7 @@
  cfg.TestSpaces←BasicHelpers
  cfg.PatternIgnoreCase←0
  cfg.CleanupIncludePattern←'Cleanup$'
- res←##.Core.RunTests cfg
+ res←##.Core.API.RunTests cfg
 
  Assert 0=BasicHelpers.⎕NC'GLOBAL'
 

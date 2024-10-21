@@ -7,7 +7,7 @@
 
  :If 0∊⍴arg                            ⍝ if empty...
      cfg←NewConfiguration
-     cfg.TestSpaces,←⊃⎕RSI             ⍝ ...scan calling space
+     cfg.TestSpaces,←2⊃⎕RSI            ⍝ ...scan calling space
  :ElseIf 1<≢arg                        ⍝ if more than one
  :OrIf (⍕arg)≢'[Mutsu configuration]'  ⍝ or not a config space
      cfg←NewConfiguration

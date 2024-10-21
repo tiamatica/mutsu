@@ -1,6 +1,6 @@
  TestReportText;res;txt;expectedTxt
 
- res←##.Core.RunTests BasicHelpers
+ res←##.Core.API.RunTests BasicHelpers
  txt←##.Core.ReportText res
 
  expectedTxt←⊃⎕NGET'./testdata/testresult.txt' 1
