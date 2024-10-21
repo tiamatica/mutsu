@@ -3,7 +3,7 @@
  cfg←##.Core.NewConfiguration
  cfg.TestSpaces←ReturnCode
  cfg.SuccessCode←1
- res←##.Core.RunTests cfg
+ res←##.Core.API.RunTests cfg
 
  Assert 1=≢res.Testsuites
 

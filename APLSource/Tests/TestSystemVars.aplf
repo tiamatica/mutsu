@@ -1,6 +1,6 @@
 TestSystemVars;res;suite;exp
 
- res←##.Core.RunTests TestIOML
+ res←##.Core.API.RunTests TestIOML
 
  Assert 1=≢res.Testsuites
  suite←⊃res.Testsuites

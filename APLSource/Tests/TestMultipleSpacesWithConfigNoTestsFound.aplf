@@ -4,7 +4,7 @@
  cfg.TestSpaces←BasicHelpers OtherTests
  cfg.PatternIgnoreCase←0
  cfg.TestIncludePattern←'_test$'
- res←##.Core.RunTests cfg
+ res←##.Core.API.RunTests cfg
 
  Assert 0=≢res.Testsuites
 

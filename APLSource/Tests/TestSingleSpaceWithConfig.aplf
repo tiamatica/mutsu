@@ -2,7 +2,7 @@
 
  cfg←##.Core.NewConfiguration
  cfg.TestSpaces←BasicHelpers
- res←##.Core.RunTests cfg
+ res←##.Core.API.RunTests cfg
 
  Assert 1=≢res.Testsuites
 

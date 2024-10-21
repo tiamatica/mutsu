@@ -1,6 +1,6 @@
  TestSingleSpaceNoConfig;res;suite;exp
 
- res←##.Core.RunTests BasicHelpers
+ res←##.Core.API.RunTests BasicHelpers
 
  Assert 1=≢res.Testsuites
 

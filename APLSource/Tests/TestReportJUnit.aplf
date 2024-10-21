@@ -1,6 +1,6 @@
  TestReportJUnit;res;xml;mls;expectedXml;expectedMls;removeKnownDiffs
 
- res←##.Core.RunTests BasicHelpers
+ res←##.Core.API.RunTests BasicHelpers
  xml←##.Core.ReportJUnit res
 
  expectedXml←⊃⎕NGET'./testdata/testresult.xml'
