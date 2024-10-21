@@ -1,0 +1,6 @@
+:Class ClassScript 
+    ∇ r←testAdd
+      :Access public shared
+      r←2=1+1
+    ∇
+:EndClass
