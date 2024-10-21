@@ -1,6 +1,6 @@
  TestMultipleSpacesNoConfig;res;suite;exp
 
- res←##.Core.RunTests BasicHelpers OtherTests
+ res←##.Core.API.RunTests BasicHelpers OtherTests
 
  Assert 2=≢res.Testsuites
 
