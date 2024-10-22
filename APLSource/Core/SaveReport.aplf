@@ -1,0 +1,10 @@
+ content SaveReport cfg;pathsep;filesuffix
+ 3 ⎕MKDIR cfg.ReportPath
+ :If ~⎕NEXISTS cfg.ReportPath
+     ⎕←'Could not create directory'
+ :Else
+     pathsep←(⎕IO+('\'∊cfg.ReportPath)∧'Win'≡3↑⊃# ⎕WG'APLVersion')⊃'/\'
+     cfg.ReportPath{⍺,(⍵≠⊃⌽⍺)/⍵}←pathsep
+     filesuffix←(API.REPORTTYPE.(JUNIT TXT)⍳cfg.ReportType)⊃'.xml' '.txt' 
+     (⊂content)⎕NPUT(cfg.ReportPath,cfg.ReportName,filesuffix)1
+ :EndIf

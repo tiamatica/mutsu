@@ -1,4 +1,4 @@
- {res}←RunTests arg;res;testsuite;testnamespaces;testnamespace;xml;cfg;rc;msg;profile
+ {res}←RunTests arg;res;testsuite;testnamespaces;testnamespace;cfg;rc;msg;profile;content
 ⍝ Run tests and return result.
 ⍝ arg is either a configuration space (NewConfiguration)
 ⍝ or a vector of namespaces to scan for tests.
@@ -40,13 +40,11 @@
  :Case API.REPORTTYPE.SESSION
      ⎕←↑ReportText res
  :Case API.REPORTTYPE.TXT
-     xml←ReportText res
-     3 ⎕MKDIR cfg.ReportPath
-     (⊂xml)⎕NPUT(cfg.ReportPath,cfg.ReportName,'.txt')1
+     content←ReportText res
+     content SaveReport cfg
  :Case API.REPORTTYPE.JUNIT
-     xml←ReportJUnit res
-     3 ⎕MKDIR cfg.ReportPath
-     (⊂xml)⎕NPUT(cfg.ReportPath,cfg.ReportName,'.xml')1
+     content←ReportJUnit res
+     content SaveReport cfg
  :Case API.REPORTTYPE.GITHUB
      ⎕←'Posting to GitHub'
      rc msg←ReportGitHub res ⍝ Try posting to GitHub
