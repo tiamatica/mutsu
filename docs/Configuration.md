@@ -20,29 +20,33 @@ If it is empty, Mutsu will scan the calling space (the namespace that `Mutsu.Run
 ### PatternIgnoreCase
 Default: `1`
 
-Flag for whether or not to ignore case when applying the search patterns (specified below) for tests, cleanup and setup functions.
-
 `0`: Case-sensitive match.
 `1`: Case-insensitive match.
+
+Flag for whether or not to ignore case when applying the search patterns (specified below) for tests, cleanup and setup functions.
+
 
 ### TestIncludePattern  
 Default: `'^test|_test$'`
 
-All function names that match the expression will be run when calling `RunTests`. This must be a valid regex expression.
+This must be a valid regex expression.
+
+All function names that match the expression will be run when calling `RunTests`. 
 
 ### CleanupIncludePattern  
 Default: `'^cleanup'`
+
+This must be a valid regex expression.
 
 Each test-suite (namespace with test functions) may contain cleanup functions. These are executed after all tests in a 
 namespace have been run. In addition, if an unexpected error is signaled during the execution of a test, all cleanup functions 
 are executed, followed by any setup functions before resuming the run of tests.
 
-This must be a valid regex expression.
-
 ### SetupIncludePattern
 Default: `'^setup'`
 
-Possible to modify to any regex filter.  
+This must be a valid regex expression.
+
 Setup functions are always executed before running the tests. If a test fails, then cleanup and setup functions are executed 
 before continuing with test functions.  
 
@@ -50,7 +54,7 @@ before continuing with test functions.
 Default: `''`
 
 The path where you want to save your reports, e.g.:  
-`ReportPath←'.\reports\' ` 
+`ReportPath←'./reports/' ` 
 
 ### ReportType
 Default: `REPORTTYPE.SESSION`
