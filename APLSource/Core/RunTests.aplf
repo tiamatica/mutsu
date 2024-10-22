@@ -1,4 +1,4 @@
- {res}←RunTests arg;res;testsuite;testnamespaces;testnamespace;xml;cfg;rc;msg;profile
+ {res}←RunTests arg;res;testsuite;testnamespaces;testnamespace;cfg;rc;msg;profile;content
 ⍝ Run tests and return result.
 ⍝ arg is either a configuration space (NewConfiguration)
 ⍝ or a vector of namespaces to scan for tests.
