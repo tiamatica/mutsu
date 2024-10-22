@@ -40,11 +40,11 @@
  :Case API.REPORTTYPE.SESSION
      ⎕←↑ReportText res
  :Case API.REPORTTYPE.TXT
-     xml←ReportText res
-     '.txt'SaveReport cfg
+     content←ReportText res
+     content SaveReport cfg
  :Case API.REPORTTYPE.JUNIT
-     xml←ReportJUnit res
-     '.xml'SaveReport cfg
+     content←ReportJUnit res
+     content SaveReport cfg
  :Case API.REPORTTYPE.GITHUB
      ⎕←'Posting to GitHub'
      rc msg←ReportGitHub res ⍝ Try posting to GitHub
