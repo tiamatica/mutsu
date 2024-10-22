@@ -5,6 +5,6 @@
  :Else
      pathsep←(⎕IO+('\'∊cfg.ReportPath)∧'Win'≡3↑⊃# ⎕WG'APLVersion')⊃'/\'
      cfg.ReportPath{⍺,(⍵≠⊃⌽⍺)/⍵}←pathsep
-     filesuffix←(⎕IO+cfg.ReportType≡API.REPORTTYPE.JUNIT)⊃'.txt' '.xml'
+     filesuffix←(API.REPORTTYPE.(JUNIT TXT)⍳cfg.ReportType)⊃'.xml' '.txt' 
      (⊂content)⎕NPUT(cfg.ReportPath,cfg.ReportName,filesuffix)1
  :EndIf
