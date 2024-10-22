@@ -1,0 +1,22 @@
+ ConfigValidation ra;vv;wrongType;bool;pathsep;propnames;types
+⍝ Validate the configuration settings
+⍝ JN  21-10-24
+⍝ ra: NS of config settings
+ vv←0 3 3 0 0 3 0 3 0 6     ⍝ expected type of the settings in NewConfiguration
+ propnames←ra.⎕NL-⍳9
+ types←10|⎕DR¨ra.⍎¨propnames
+ wrongType←(vv≠types)/propnames
+ :If (∨/vv≠types)
+    (∊'None valid data type for: ' ' ',¨wrongType)⎕SIGNAL 11
+ :EndIf
+⍝ ⊃∨/(⍴⍴)¨ra.(Debug PatternIgnoreCase SuccessCode ReportType)   ⍝any of these an array?
+ :If ∨/bool←~ra.(Debug PatternIgnoreCase SuccessCode)∊0 1       ⍝ not a valid value: 0 or 1
+    (∊'Accepted value is 0 or 1 for:',' ',¨bool/'Debug' 'PatternIgnoreCase' 'SuccessCode')⎕SIGNAL 11
+ :EndIf
+
+ :If ~ra.ReportType∊0 1 2 3
+     'Value for ReportType not valid'⎕SIGNAL 11
+ :EndIf
+ pathsep←(⎕IO+('\'∊ra.ReportPath)∧'Win'≡3↑⊃# ⎕WG'APLVersion')⊃'/\'
+ ra.ReportPath{⍺,(⍵≠⊃⌽⍺)/⍵}←pathsep
+ ⍝

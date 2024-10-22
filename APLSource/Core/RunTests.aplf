@@ -15,6 +15,7 @@
  :Else
      cfg←arg
  :EndIf
+ ConfigValidation cfg
 
  res←NewResultSet
  testnamespaces←⊃,/{
