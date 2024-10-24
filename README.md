@@ -15,12 +15,13 @@ If you place your tests inside a namespace (e.g., *Tests*) you can pass that nam
 
 ```apl
       Mutsu.RunTests Tests
-Test run on 2024-10-14T15:15:42
-Total suites:   1              
-Total tests:    1              
-Total errors:   0              
-Total failures: 0              
-Total skipped:  0 
+Test run on 2024-10-24T09:34:54
+Total suites:     1            
+Total assertions: 0            
+Total tests:      1            
+Total errors:     0            
+Total failures:   0            
+Total skipped:    0 
 ```
 
 There are three helper functions that you can use inside your tests: `Assert`, `Skip` and `Try`. Calling `Mutsu.RunTests` will 
@@ -29,7 +30,7 @@ place these functions inside your test namespaces before invoking your tests.
 ```apl
 Assert 2=addOne 1 ⍝ Assert that result matches expected value.
 
-Skip 'This test isn't ready yet.'
+Skip 'This test isn''t ready yet.'
 
 2 (11 Try {⍺÷⍵}) 0 ⍝ We expected a Domain error and we got it
 ```

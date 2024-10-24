@@ -37,19 +37,19 @@ tests in these two suites and save the test result report as a text file in the 
 follows:
 
 ```apl
-myRunTests; cfg
+myRunTests;cfg
 
 cfg←Mutsu.NewConfiguration
 cfg.TestSpaces←Tests
 cfg.ReportType←Mutsu.REPORTTYPE.TXT
-cfg.ReportPath←'/Users/sandra/Desktop/Result/'
+cfg.ReportPath←'/path/TestReports'
 Mutsu.RunTests cfg
 ```
 
 
 ## Validation helpers
 Mutsu provides three helper functions that you can use in your tests. These functions are copied into any namespace containing 
-test functions when you run `Mutsu.RunTests`.
+test functions when you run `Mutsu.RunTests`, before invoking your tests.
 
 ### Assert
 Use `Assert` to check that the result matches what you expect. `Assert` expects a boolean as the right argument, with 1 indicating 
@@ -65,7 +65,7 @@ Use `Skip` if you have test functions that are not completed yet or not applicab
 want to include them in the test result report.
 
 ```apl
-Skip 'This test isn't ready yet.'
+Skip 'This test isn''t ready yet.'
 ⍝ or
 Skip ('20.0'≡4↑2⊃'.'⎕WG'APLVersion')/'Won''t run on version 20.0'
 
