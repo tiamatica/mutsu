@@ -1,4 +1,4 @@
- testBool ;msgcfg
+ testBool ;msg;cfg
  cfg←##.##.Core.NewConfiguration
  cfg.TestSpaces←⎕THIS
  cfg.Debug←3

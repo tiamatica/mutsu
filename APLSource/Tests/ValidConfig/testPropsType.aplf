@@ -1,4 +1,4 @@
- testPropsType ;msgcfg
+ testPropsType ;msg;cfg
  cfg←##.##.Core.NewConfiguration
  cfg.TestSpaces←⎕THIS
  cfg.Debug←'debug'
