@@ -1,0 +1,11 @@
+ testPropsType ;msgcfg
+ cfg←##.##.Core.NewConfiguration
+ cfg.TestSpaces←⎕THIS
+ cfg.Debug←'debug'
+ cfg.CleanupIncludePattern←1
+ :Trap 11
+    #.Mutsu.Core.ConfigValidation cfg
+ :Else
+ msg←⎕DMX.EM
+ :EndTrap
+ #.Mutsu.Core.Assert msg≡'Invalid data type for: CleanupIncludePattern Debug'

@@ -7,12 +7,12 @@
  names types←↓⍉↑props       ⍝ expected property names & types of the settings in NewConfiguration
  diff←(ra.⎕NL-⍳9)~names
  :If 0≠⍴diff
-     ⎕←'Unknown parameters provided: ',diff
- :EndIf
+     ('Unknown parameters provided:',∊' ',¨diff)⎕SIGNAL 11
+:EndIf
  defTypes←10|⎕DR¨ra.⍎¨names
  wrongType←(defTypes≠types)/names
  :If 0<≢wrongType
-    ('Invalid data type for: ',∊' ',¨wrongType)⎕SIGNAL 11
+    ('Invalid data type for:',∊' ',¨wrongType)⎕SIGNAL 11
  :EndIf
  :If ∨/notBool←~ra.(Debug PatternIgnoreCase SuccessCode)∊0 1
     ('Accepted value is 0 or 1 for:',∊' ',¨notBool/'Debug' 'PatternIgnoreCase' 'SuccessCode')⎕SIGNAL 11

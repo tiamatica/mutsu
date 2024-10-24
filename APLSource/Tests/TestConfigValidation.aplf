@@ -1,0 +1,13 @@
+ TestConfigValidation
+ cfg←##.Core.NewConfiguration
+ cfg.TestSpaces←ValidConfig
+ res←##.Core.API.RunTests cfg
+
+ Assert 1=≢res.Testsuites
+
+ suite←⊃res.Testsuites
+ Assert suite.Name≡'#.Mutsu.Tests.ValidConfig'
+
+ Assert suite.Tests≡5
+ Assert suite.Failures≡0
+⍝

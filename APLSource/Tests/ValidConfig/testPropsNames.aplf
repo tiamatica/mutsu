@@ -1,0 +1,11 @@
+ testPropsNames;msg;cfg
+ cfg←##.##.Core.NewConfiguration
+ cfg.TestSpaces←⎕THIS
+ cfg.debug←0
+ :Trap 11
+     #.Mutsu.Core.ConfigValidation cfg
+ :Else
+     msg←⎕DMX.EM
+ :EndTrap
+
+ #.Mutsu.Core.Assert msg≡'Unknown parameters provided: debug'

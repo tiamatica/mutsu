@@ -1,0 +1,7 @@
+ testReportPath;correctedPath;cfg
+ cfg←##.##.Core.NewConfiguration
+ cfg.TestSpaces←⎕THIS
+ cfg.ReportPath←'.\myReports'
+ #.Mutsu.Core.ConfigValidation cfg
+ correctedPath←cfg.ReportPath
+ #.Mutsu.Core.Assert correctedPath≡'c:/repos/mutsu/myReports/'

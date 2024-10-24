@@ -1,0 +1,11 @@
+ testBool ;msgcfg
+ cfg←##.##.Core.NewConfiguration
+ cfg.TestSpaces←⎕THIS
+ cfg.Debug←3
+ :Trap 11
+     #.Mutsu.Core.ConfigValidation cfg
+ :Else
+     msg←⎕DMX.EM
+ :EndTrap
+
+ #.Mutsu.Core.Assert msg≡'Accepted value is 0 or 1 for: Debug'
