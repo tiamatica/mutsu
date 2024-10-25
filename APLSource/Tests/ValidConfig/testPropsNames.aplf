@@ -1,0 +1,5 @@
+ testPropsNames;msg;cfg
+ cfg←##.##.Core.NewConfiguration
+ cfg.TestSpaces←⎕THIS
+ cfg.debug←0
+ ('Unknown parameters provided: debug' Try #.Mutsu.Core.ConfigValidation) cfg

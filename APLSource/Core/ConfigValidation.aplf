@@ -1,0 +1,26 @@
+ ConfigValidation ra;wrongType;types;props;notBool;diff;names;defTypes
+⍝ Validate the configuration settings
+⍝ JN  21-10-24
+⍝ ra: NS of config settings
+ props←('CleanupIncludePattern' 0)('Debug' 3)('PatternIgnoreCase' 3)('ReportName' 0)('ReportPath' 0)
+ props,←('ReportType' 3)('SetupIncludePattern' 0)('SuccessCode' 3)('TestIncludePattern' 0)('TestSpaces' 6)
+ names types←↓⍉↑props       ⍝ expected property names & types of the settings in NewConfiguration
+ diff←(ra.⎕NL-⍳9)~names
+ :If 0≠⍴diff
+     ('Unknown parameters provided:',∊' ',¨diff)⎕SIGNAL 11
+:EndIf
+ defTypes←10|⎕DR¨ra.⍎¨names
+ wrongType←(defTypes≠types)/names
+ :If 0<≢wrongType
+    ('Invalid data type for:',∊' ',¨wrongType)⎕SIGNAL 11
+ :EndIf
+ :If ∨/notBool←~ra.(Debug PatternIgnoreCase SuccessCode)∊0 1
+    ('Accepted value is 0 or 1 for:',∊' ',¨notBool/'Debug' 'PatternIgnoreCase' 'SuccessCode')⎕SIGNAL 11
+ :EndIf
+
+ :If ~ra.ReportType∊API.REPORTTYPE.(⍎¨⎕NL¯2)
+     'Value for ReportType not valid'⎕SIGNAL 11
+ :EndIf
+ →(0∊⍴⊃⎕NPARTS ra.ReportPath)/0                 ⍝ No path provided
+ ra.ReportPath←⊃1⎕NPARTS ra.ReportPath,'/'
+ ⍝

@@ -1,0 +1,14 @@
+ testReportPath;correctedPath;cfg;expectedPath
+ cfg←##.##.Core.NewConfiguration
+ cfg.TestSpaces←⎕THIS
+
+ :If 'Win'≡3↑⊃# ⎕WG'APLVersion'
+    cfg.ReportPath←'c:\temp\reports'
+    expectedPath←'c:/temp/reports/'
+ :Else
+    cfg.ReportPath←'/var/tmp'
+    expectedPath←'/var/tmp/'
+ :EndIf
+ #.Mutsu.Core.ConfigValidation cfg
+ correctedPath←cfg.ReportPath
+ Assert correctedPath≡expectedPath

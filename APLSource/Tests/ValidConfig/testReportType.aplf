@@ -1,0 +1,5 @@
+ testReportType;msg;cfg
+ cfg←##.##.Core.NewConfiguration
+ cfg.TestSpaces←⎕THIS
+ cfg.ReportType←5
+ ('Value for ReportType not valid' Try #.Mutsu.Core.ConfigValidation) cfg
