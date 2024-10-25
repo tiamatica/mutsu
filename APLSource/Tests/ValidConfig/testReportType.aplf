@@ -2,10 +2,4 @@
  cfg←##.##.Core.NewConfiguration
  cfg.TestSpaces←⎕THIS
  cfg.ReportType←5
- :Trap 11
-     #.Mutsu.Core.ConfigValidation cfg
- :Else
-     msg←⎕DMX.EM
- :EndTrap
-
- #.Mutsu.Core.Assert msg≡'Value for ReportType not valid'
+ ('Value for ReportType not valid' Try #.Mutsu.Core.ConfigValidation) cfg
