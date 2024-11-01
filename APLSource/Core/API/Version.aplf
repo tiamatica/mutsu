@@ -1,0 +1,3 @@
+r←Version;ver
+ver←(⎕JSON⍠'Dialect' 'JSON5'⊢##.TatinVars.CONFIG).version
+r←'Mutsu: ',(¯1+ver⍳'+')↑ver

@@ -19,5 +19,5 @@
   source: "APLSource/Core",
   tags: "test, testing, test-framework",
   userCommandScript: "",
-  version: "0.0.0",
+  version: "0.1.014+12",
 }
