@@ -25,14 +25,14 @@
      ⍵,⊃,/∇¨⍵.⍎¨subspaces
  }¨cfg.TestSpaces
  profile←'inactive'≡⊃⎕PROFILE'state'
- ⎕PROFILE⍣profile⊢'start' 'none'
+ {}⎕PROFILE⍣profile⊢'start' 'none'
  :For testnamespace :In testnamespaces
      testsuite←cfg RunTestsuite testnamespace
      :If ~0∊⍴testsuite.Testcases
          res.Testsuites,←testsuite
      :EndIf
  :EndFor
- ⎕PROFILE⍣profile⊢'clear'
+ {}⎕PROFILE⍣profile⊢'clear'
  res.TimeElapsed←86400×-/1 ⎕DT ⎕TS res.Timestamp
  :If ~0∊⍴res.Testsuites
      res.(Assertions Errors Failures Skipped Tests)←+⌿↑res.Testsuites.(Assertions Errors Failures Skipped Tests)
