@@ -1,4 +1,4 @@
- {res}←RunTests arg;res;testsuite;testnamespaces;testnamespace;cfg;rc;msg;profile;content
+ {res}←RunTests arg;res;testsuite;testnamespaces;testnamespace;cfg;rc;msg;content;activate;upgrade
 ⍝ Run tests and return result.
 ⍝ arg is either a configuration space (NewConfiguration)
 ⍝ or a vector of namespaces to scan for tests.
@@ -24,15 +24,16 @@
      0∊⍴subspaces:⍵
      ⍵,⊃,/∇¨⍵.⍎¨subspaces
  }¨cfg.TestSpaces
- profile←'inactive'≡⊃⎕PROFILE'state'
- {}⎕PROFILE⍣profile⊢'start' 'none'
+ activate upgrade←'inactive' 'coverage'≡¨2↑⎕PROFILE'state'
+ {}⎕PROFILE⍣upgrade⊢'clear'
+ {}⎕PROFILE⍣(activate∨upgrade)⊢'start' 'none'
  :For testnamespace :In testnamespaces
      testsuite←cfg RunTestsuite testnamespace
      :If ~0∊⍴testsuite.Testcases
          res.Testsuites,←testsuite
      :EndIf
  :EndFor
- {}⎕PROFILE⍣profile⊢'clear'
+ {}⎕PROFILE⍣activate⊢'clear'
  res.TimeElapsed←86400×-/1 ⎕DT ⎕TS res.Timestamp
  :If ~0∊⍴res.Testsuites
      res.(Assertions Errors Failures Skipped Tests)←+⌿↑res.Testsuites.(Assertions Errors Failures Skipped Tests)
