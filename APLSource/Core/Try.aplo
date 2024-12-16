@@ -1,8 +1,7 @@
- {larg}(err Try rop)rarg;expected;msg;attr_res;attr_val;⎕IO
+ {larg}(err Try rop)rarg;expected;msg;attr_res;attr_val
  ⍝ err: Expected error, either as an event code or a string/substring. 0 if no error expected.
- ⎕IO←0
  expected←{3=10|⎕DR ⍵:⎕EM ⍵ ⋄ ⍵}err
- msg←(err≡0)⊃('Expected exception [',expected,']')'Expected no exception'
+ msg←(⎕IO+err≡0)⊃('Expected exception [',expected,']')'Expected no exception'
  (attr_res attr_val)←10 11⎕ATX'rop'
  ⍎(0=⎕NC'larg')/'larg←⊢'
  :Trap 0
