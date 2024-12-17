@@ -1,4 +1,4 @@
- BuildAndPublish;⎕TRAP;⎕IO;⎕ML;root;version;template;ns;json;packagename;parms;api_key;tatin;git_tag; registry
+ BuildAndPublish;⎕TRAP;⎕IO;⎕ML;root;version;packagename;parms;api_key;tatin;git_tag; registry
  ⎕IO←⎕ML←1
  {}⎕EX⊃⎕SI
  ⎕TRAP←0 'E' '⎕←↑⎕DM,⎕XSI,¨''['',¨(⍕¨⎕LC),¨'']'' ⋄ ⎕OFF 1'
