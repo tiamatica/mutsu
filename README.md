@@ -1,5 +1,9 @@
 # Mutsu
 
+![Static Badge](https://img.shields.io/badge/Test_framework-firebrick)
+[![License: MIT](https://img.shields.io/badge/License-MIT-lightgreen.svg)](https://opensource.org/licenses/MIT)
+![GitHub last commit](https://img.shields.io/github/last-commit/tiamatica/mutsu?color=cornflowerblue)
+
 Mutsu is an easy-to-use and flexible test framework for Dyalog APL.
 
 ## How to use it 
