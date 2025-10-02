@@ -1,4 +1,4 @@
- res←cfg RunTestsuite testspace;res;allfns;testfns;testfn;ai;testcase;setupfns;cleanupfns;lasttest;assertCnts
+res←cfg RunTestsuite testspace;res;allfns;testfns;testfn;ai;testcase;setupfns;cleanupfns;lasttest;assertCnts;maxstrlen
 ⍝ Run tests using configuraition in cfg
 ⍝ Return a result space.
 
@@ -14,11 +14,13 @@
  testspace.⍎¨setupfns
 
  assertCnts←GetAssertionCount
+ maxstrlen←⌈/≢¨testfns
  :For testfn :In testfns
      lasttest←testfn≡⊃¯1↑testfns
      ai←⎕AI
      testcase←cfg RunTest testspace testfn
      testcase.TimeElapsed←(3⊃⎕AI-ai)÷1000
+     ⎕←'Test: ',testfn,((maxstrlen-≢testfn)/' '),' Result: ',testcase.ResultCode{⊃n/⍨⍺=⍵⍎¨n←⍵.⎕NL ¯2}API.TESTRESULT
      :If testcase.ResultCode≠API.TESTRESULT.PASS
      :AndIf ~lasttest
          testspace.⍎¨cleanupfns,setupfns
@@ -26,7 +28,7 @@
      res.Testcases,←testcase
      assertCnts,←GetAssertionCount
  :EndFor
- res.Assertions←+/res.Testcases.Assertions← ¯2-/assertCnts
+ res.Assertions←+/res.Testcases.Assertions←¯2-/assertCnts
  testspace.⍎¨cleanupfns
  res.TimeElapsed←86400×-/1 ⎕DT ⎕TS res.Timestamp
  res.Tests←≢res.Testcases
