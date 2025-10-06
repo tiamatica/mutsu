@@ -37,7 +37,7 @@ jobs:
       - name: ACR Docker login
         uses: azure/cli@v2
         with:
-          inlineScript: az acr login --name vars.CONTAINER_REGISTRY
+          inlineScript: az acr login --name ${{ vars.CONTAINER_REGISTRY }}
 
       - name: Run tests using Docker
         run: >
