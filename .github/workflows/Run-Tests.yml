@@ -34,10 +34,19 @@ jobs:
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
-      - name: ACR Docker login
+      - name: Get ACR access token
+        id: get_token
         uses: azure/cli@v2
         with:
-          inlineScript: az acr login --name ${{ vars.CONTAINER_REGISTRY }}
+          inlineScript: |
+            TOKEN=$(az acr login --name ${{ vars.CONTAINER_REGISTRY }} --expose-token --query accessToken -o tsv)
+            echo "token=$TOKEN" >> "$GITHUB_OUTPUT"
+      
+      - name: Docker login to ACR
+        run: |
+          echo "${{ steps.get_token.outputs.token }}" \
+            | docker login ${{ vars.CONTAINER_REGISTRY }} \
+                -u 00000000-0000-0000-0000-000000000000 --password-stdin
 
       - name: Run tests using Docker
         run: >
