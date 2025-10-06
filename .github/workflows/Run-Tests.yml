@@ -4,6 +4,10 @@ on:
   push:
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   Run-Tests:
     runs-on: ubuntu-latest
@@ -23,12 +27,26 @@ jobs:
         with:
           useConfigFile: true
 
-      - name: Login to Azure CR
-        uses: azure/docker-login@v2
+      - name: Azure login (OIDC)
+        uses: azure/login@v2
         with:
-          login-server: ${{ vars.CONTAINER_REGISTRY }}
-          username: ${{ secrets.AZURE_ACR_USR }}
-          password: ${{ secrets.AZURE_ACR_PWD }}
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Get ACR access token
+        id: get_token
+        uses: azure/cli@v2
+        with:
+          inlineScript: |
+            TOKEN=$(az acr login --name ${{ vars.CONTAINER_REGISTRY }} --expose-token --query accessToken -o tsv)
+            echo "token=$TOKEN" >> "$GITHUB_OUTPUT"
+      
+      - name: Docker login to ACR
+        run: |
+          echo "${{ steps.get_token.outputs.token }}" \
+            | docker login ${{ vars.CONTAINER_REGISTRY }} \
+                -u 00000000-0000-0000-0000-000000000000 --password-stdin
 
       - name: Run tests using Docker
         run: >
