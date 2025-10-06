@@ -1,4 +1,4 @@
-res←cfg RunTestsuite testspace;res;allfns;testfns;testfn;ai;testcase;setupfns;cleanupfns;lasttest;assertCnts;maxstrlen
+ res←cfg RunTestsuite testspace;res;allfns;testfns;testfn;ai;testcase;setupfns;cleanupfns;lasttest;assertCnts;resultSymbol
 ⍝ Run tests using configuraition in cfg
 ⍝ Return a result space.
 
@@ -14,13 +14,14 @@ res←cfg RunTestsuite testspace;res;allfns;testfns;testfn;ai;testcase;setupfns;
  testspace.⍎¨setupfns
 
  assertCnts←GetAssertionCount
- maxstrlen←⌈/≢¨testfns
  :For testfn :In testfns
      lasttest←testfn≡⊃¯1↑testfns
+     ⍞←(⎕UCS 9203 32),testfn
      ai←⎕AI
      testcase←cfg RunTest testspace testfn
      testcase.TimeElapsed←(3⊃⎕AI-ai)÷1000
-     ⎕←'Test: ',testfn,((maxstrlen-≢testfn)/' '),' Result: ',testcase.ResultCode{⊃n/⍨⍺=⍵⍎¨n←⍵.⎕NL ¯2}API.TESTRESULT
+     resultSymbol←⎕UCS 9989 10060 9197 9888[1+testcase.ResultCode]
+     ⍞←((2+≢testfn)⍴⎕UCS 8),resultSymbol,' ',testfn,⎕UCS 10
      :If testcase.ResultCode≠API.TESTRESULT.PASS
      :AndIf ~lasttest
          testspace.⍎¨cleanupfns,setupfns
